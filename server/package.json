@@ -1,0 +1,13 @@
+{
+  "name": "hero-battles-server",
+  "version": "1.0.0",
+  "description": "A fun website where you can battle it out as super heroes.",
+  "main": "index.js",
+  "author": "Rohan Bhatia",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.51",
+    "typescript": "^3.9.6"
+  }
+}
