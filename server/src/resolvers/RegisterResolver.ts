@@ -1,11 +1,11 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
-import {User} from '../entities/User';
+import { User } from "../entities/User";
 
 @Resolver()
-export class HelloResolver {
-  @Query(()=>String)
-  async hello() {
-    return "hello world";
+export default class RegisterResolver {
+  @Query(() => String)
+  async requiredQuery() {
+    return "this is required but is never used";
   }
 
   @Mutation(() => User)
