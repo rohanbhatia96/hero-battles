@@ -1,10 +1,10 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
-import { User } from "../entities/User";
+import { User } from "../entities/user";
 
 @Resolver()
 export default class RegisterResolver {
   @Query(() => String)
-  async requiredQuery() {
+  requiredQuery() {
     return "this is required but is never used";
   }
 
@@ -15,7 +15,7 @@ export default class RegisterResolver {
     @Arg("email") email: string,
     @Arg("password") password: string
   ): Promise<User> {
-    const user = await User.create({
+    const user: User = await User.create({
       firstName,
       lastName,
       email,
