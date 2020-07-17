@@ -7,10 +7,11 @@ import axios from "axios";
 export default class CharacterResolver {
   @Query(() => [Character])
   async getTrendingHeroes() {
-    // let a, b: number;
-    // a = Math.floor(Math.random() * 700);
+    let a: number;
+    //let b: number;
+    a = Math.floor(Math.random() * 700);
     // b = Math.floor(Math.random() * 700);
-    //axiosGet(`https://superheroapi.com/api/1613074412200037/${a}`);
+    axiosGet(`https://superheroapi.com/api/1613074412200037/${a}`);
     //axiosGet(`https://superheroapi.com/api/1613074412200037/${b}`);
     axiosGet(`https://superheroapi.com/api/1613074412200037/search/bat`);
     let c = Character.create({
