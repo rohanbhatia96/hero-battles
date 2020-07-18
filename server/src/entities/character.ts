@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import { ObjectType, Field, registerEnumType } from "type-graphql";
-import {CharacterAlignment} from '../enums';
+import {CharacterAlignment} from '../types/enums';
 
 registerEnumType(CharacterAlignment, {
   name: "CharacterAlignment"
