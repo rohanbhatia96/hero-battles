@@ -1,10 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-import { ObjectType, Field, registerEnumType } from "type-graphql";
-import {CharacterAlignment} from '../types/enums';
-
-registerEnumType(CharacterAlignment, {
-  name: "CharacterAlignment"
-});
+import { Field, ObjectType } from "type-graphql";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
@@ -19,18 +14,19 @@ export class Character extends BaseEntity {
   @Column()
   name: string;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   realName: string;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   imageUrl: string;
 
-  @Field(_type => CharacterAlignment)
-  @Column({
-    type: "enum",
-    enum: CharacterAlignment,
-  })
-  alignment: CharacterAlignment;
+  @Field()
+  @Column()
+  alignment: string;
+
+  @Field()
+  @Column()
+  publisher: string;
 }
