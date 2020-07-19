@@ -2,7 +2,7 @@ import { ApolloError } from "apollo-server-express";
 import { ApiCharacter } from "src/types/apiResponses";
 import { Query, Resolver } from "type-graphql";
 import { getCharacterByID } from "../api/";
-import { Character } from "../entities/character";
+import { Character } from "../entities";
 
 @Resolver()
 export default class CharacterResolver {

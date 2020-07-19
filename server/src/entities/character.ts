@@ -1,5 +1,6 @@
 import { Field, ObjectType } from "type-graphql";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { PowerStats } from "./powerStats";
 
 @ObjectType()
 @Entity()
@@ -29,4 +30,8 @@ export class Character extends BaseEntity {
   @Field()
   @Column()
   publisher: string;
+
+  @OneToOne((_type) => PowerStats)
+  @JoinColumn()
+  profile: PowerStats;
 }
