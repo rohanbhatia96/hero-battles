@@ -1,11 +1,11 @@
 import { ApolloError } from "apollo-server-express";
 import { ApiCharacter } from "src/types/apiResponses";
 import { Mutation, Query, Resolver } from "type-graphql";
-import { getCharacterByID } from "../api/";
-import { Character, PowerStats } from "../entities";
+import { getCharacterByID } from "../../api";
+import { Character, PowerStats } from "../../entities";
 
 @Resolver()
-export default class CharacterResolver {
+export default class TrendingResolver {
   @Query(() => [Character])
   async getTrendingCharacters(): Promise<Character[]> {
     try {
@@ -14,18 +14,6 @@ export default class CharacterResolver {
         relations: ["powerStats"],
       });
       return trendingCharacters;
-    } catch (err) {
-      throw new ApolloError(err);
-    }
-  }
-
-  @Query(() => [Character])
-  async getAllCharacters(): Promise<Character[]> {
-    try {
-      const chars = await Character.find({
-        relations: ["powerStats"],
-      });
-      return chars;
     } catch (err) {
       throw new ApolloError(err);
     }

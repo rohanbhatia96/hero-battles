@@ -1,4 +1,9 @@
-import RegisterResolver from "./registerResolver";
-import CharacterResolver from './characterResolver';
+import RegisterResolver from "./user/registerResolver";
+import TrendingCharactersResolver from "./character/trendingResolver";
+import MainCharacterResolver from "./character/mainResolver";
 
-export const resolvers = [RegisterResolver, CharacterResolver] as const;
+export const resolvers = [
+  RegisterResolver,
+  TrendingCharactersResolver,
+  MainCharacterResolver,
+] as const;
