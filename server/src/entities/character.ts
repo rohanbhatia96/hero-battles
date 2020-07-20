@@ -1,5 +1,12 @@
 import { Field, ObjectType } from "type-graphql";
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { PowerStats } from "./powerStats";
 
 @ObjectType()
@@ -31,7 +38,12 @@ export class Character extends BaseEntity {
   @Column()
   publisher: string;
 
-  @OneToOne((_type) => PowerStats)
+  @Field()
+  @Column({ default: false })
+  isTrending: boolean;
+
+  @Field((_type) => PowerStats)
+  @OneToOne((_type) => PowerStats, { cascade: true, onDelete: "CASCADE" })
   @JoinColumn()
-  profile: PowerStats;
+  powerStats: PowerStats;
 }

@@ -17,10 +17,6 @@ export class PowerStats extends BaseEntity {
 
   @Field()
   @Column()
-  imageUrl: string;
-
-  @Field()
-  @Column()
   speed: number;
 
   @Field()

@@ -1,10 +1,10 @@
 export type PowerStats = {
-  intelligence: number;
-  strength: number;
-  speed: number;
-  durability: number;
-  power: number;
-  combat: number;
+  intelligence: string;
+  strength: string;
+  speed: string;
+  durability: string;
+  power: string;
+  combat: string;
 };
 
 export type Biography = {
@@ -43,7 +43,7 @@ export type Image = {
 
 export interface ApiCharacter {
   response: string;
-  id: number;
+  id: string;
   name: string;
   powerstats: PowerStats;
   biography: Biography;

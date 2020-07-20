@@ -1,35 +1,76 @@
 import { ApolloError } from "apollo-server-express";
 import { ApiCharacter } from "src/types/apiResponses";
-import { Query, Resolver } from "type-graphql";
+import { Mutation, Query, Resolver } from "type-graphql";
 import { getCharacterByID } from "../api/";
-import { Character } from "../entities";
+import { Character, PowerStats } from "../entities";
 
 @Resolver()
 export default class CharacterResolver {
   @Query(() => [Character])
   async getTrendingHeroes(): Promise<Character[]> {
-    let trendingHeroes: Character[] = [];
-    let a, i: number;
-    let characterRequests: Promise<ApiCharacter>[] = [];
-    for (i = 0; i < 15; i++) {
-      a = Math.floor(Math.random() * 700);
-      characterRequests.push(getCharacterByID(a));
-    }
     try {
-      let response: ApiCharacter[] = await Promise.all(characterRequests);
+      const trendingCharacters = await Character.find({
+        where: { isTrending: true },
+        relations: ["powerStats"],
+      });
+      return trendingCharacters;
+    } catch (err) {
+      throw new ApolloError(err);
+    }
+  }
+
+  @Mutation(() => [Character])
+  async updateTrendingCharacters(): Promise<Character[]> {
+    try {
+      await Character.delete({
+        isTrending: true,
+      });
+      let randomIds: number[] = [];
+      let idCount: number = 0;
+      let randomNum: number;
+      let trendingCharacters: Character[] = [];
+      let singleResponse: ApiCharacter;
+      let avgSingleStats = 0;
+      let ps: PowerStats;
       let c: Character;
-      for (i = 0; i < response.length; i++) {
-        c = Character.create({
-          apiID: response[i].id,
-          name: response[i].name,
-          realName: response[i].biography["full-name"],
-          imageUrl: response[i].image.url,
-          alignment: response[i].biography.alignment,
-          publisher: response[i].biography.publisher,
-        });
-        trendingHeroes.push(c);
+      while (idCount < 15) {
+        randomNum = Math.floor(Math.random() * 700);
+        if (!randomIds.includes(randomNum)) {
+          singleResponse = await getCharacterByID(randomNum);
+          avgSingleStats =
+            (Number(singleResponse.powerstats.intelligence) +
+              Number(singleResponse.powerstats.combat) +
+              Number(singleResponse.powerstats.durability) +
+              Number(singleResponse.powerstats.speed) +
+              Number(singleResponse.powerstats.strength) +
+              Number(singleResponse.powerstats.power)) /
+            6;
+          if (avgSingleStats > 55) {
+            randomIds.push(randomNum);
+            idCount++;
+            ps = PowerStats.create({
+              intelligence: +singleResponse.powerstats.intelligence | 0,
+              strength: +singleResponse.powerstats.strength | 0,
+              speed: +singleResponse.powerstats.speed | 0,
+              durability: +singleResponse.powerstats.durability | 0,
+              power: +singleResponse.powerstats.power | 0,
+              combat: +singleResponse.powerstats.combat | 0,
+            });
+            c = await Character.create({
+              apiID: +singleResponse.id,
+              name: singleResponse.name,
+              realName: singleResponse.biography["full-name"],
+              imageUrl: singleResponse.image.url,
+              alignment: singleResponse.biography.alignment,
+              publisher: singleResponse.biography.publisher,
+              isTrending: true,
+              powerStats: ps,
+            }).save();
+            trendingCharacters.push(c);
+          }
+        }
       }
-      return trendingHeroes;
+      return trendingCharacters;
     } catch (err) {
       throw new ApolloError(err);
     }
