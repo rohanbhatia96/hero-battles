@@ -19,6 +19,18 @@ export default class CharacterResolver {
     }
   }
 
+  @Query(() => [Character])
+  async getAllCharacters(): Promise<Character[]> {
+    try {
+      const chars = await Character.find({
+        relations: ["powerStats"],
+      });
+      return chars;
+    } catch (err) {
+      throw new ApolloError(err);
+    }
+  }
+
   @Mutation(() => [Character])
   async updateTrendingCharacters(): Promise<Character[]> {
     try {

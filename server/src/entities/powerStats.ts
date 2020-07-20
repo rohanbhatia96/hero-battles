@@ -1,9 +1,18 @@
 import { Field, ObjectType } from "type-graphql";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from "typeorm";
+import { Character } from ".";
 
 @ObjectType()
 @Entity()
 export class PowerStats extends BaseEntity {
+  @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -30,4 +39,11 @@ export class PowerStats extends BaseEntity {
   @Field()
   @Column()
   combat: number;
+
+  @Field((_type) => Character)
+  @OneToOne((_type) => Character, (character) => character.powerStats, {
+    onDelete: "CASCADE",
+  })
+  @JoinColumn()
+  character: Character;
 }

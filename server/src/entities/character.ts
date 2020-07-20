@@ -3,7 +3,6 @@ import {
   BaseEntity,
   Column,
   Entity,
-  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -43,7 +42,8 @@ export class Character extends BaseEntity {
   isTrending: boolean;
 
   @Field((_type) => PowerStats)
-  @OneToOne((_type) => PowerStats, { cascade: true, onDelete: "CASCADE" })
-  @JoinColumn()
+  @OneToOne((_type) => PowerStats, (powerStats) => powerStats.character, {
+    cascade: true,
+  })
   powerStats: PowerStats;
 }
