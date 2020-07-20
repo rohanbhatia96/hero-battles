@@ -7,7 +7,7 @@ import { Character, PowerStats } from "../entities";
 @Resolver()
 export default class CharacterResolver {
   @Query(() => [Character])
-  async getTrendingHeroes(): Promise<Character[]> {
+  async getTrendingCharacters(): Promise<Character[]> {
     try {
       const trendingCharacters = await Character.find({
         where: { isTrending: true },
