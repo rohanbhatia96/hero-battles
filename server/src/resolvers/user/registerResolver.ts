@@ -1,5 +1,7 @@
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import bcrypt from "bcrypt";
 import { User } from "../../entities";
+import { ApolloError } from "apollo-server-express";
 
 @Resolver()
 export default class RegisterResolver {
@@ -15,12 +17,17 @@ export default class RegisterResolver {
     @Arg("email") email: string,
     @Arg("password") password: string
   ): Promise<User> {
-    const user: User = await User.create({
-      firstName,
-      lastName,
-      email,
-      password,
-    }).save();
-    return user;
+    try {
+      let encryptedPassword = await bcrypt.hash(password, 10);
+      const user: User = await User.create({
+        firstName,
+        lastName,
+        email,
+        password: encryptedPassword,
+      }).save();
+      return user;
+    } catch (err) {
+      throw new ApolloError(err);
+    }
   }
 }
