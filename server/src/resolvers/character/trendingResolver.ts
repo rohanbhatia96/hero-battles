@@ -1,5 +1,5 @@
 import { ApolloError } from "apollo-server-express";
-import { ApiCharacter } from "src/types/apiResponses";
+import { ApiCharacter } from "../../types/apiResponses";
 import { Mutation, Query, Resolver } from "type-graphql";
 import { getCharacterByID } from "../../api";
 import { Character, PowerStats } from "../../entities";

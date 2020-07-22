@@ -2,10 +2,13 @@ import bcrypt from "bcrypt";
 import { Arg, Query, Resolver } from "type-graphql";
 import { User } from "../../entities";
 import { ApolloError } from "apollo-server-express";
+import { ValidateArgs } from "../../middlewares/ValidateArguments";
+import { loginUserSchema } from "../../schemas/userSchemas";
 
 @Resolver()
 export default class LoginResolver {
   @Query(() => User)
+  @ValidateArgs(loginUserSchema)
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string

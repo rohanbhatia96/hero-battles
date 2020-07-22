@@ -2,6 +2,8 @@ import { Resolver, Query, Mutation, Arg } from "type-graphql";
 import bcrypt from "bcrypt";
 import { User } from "../../entities";
 import { ApolloError } from "apollo-server-express";
+import { ValidateArgs } from "../../middlewares/ValidateArguments";
+import { registerUserSchema } from "../../schemas/userSchemas";
 
 @Resolver()
 export default class RegisterResolver {
@@ -11,9 +13,10 @@ export default class RegisterResolver {
   }
 
   @Mutation(() => User)
+  @ValidateArgs(registerUserSchema)
   async register(
     @Arg("firstName") firstName: string,
-    @Arg("lastName") lastName: string,
+    @Arg("lastName", {defaultValue: ""}) lastName: string,
     @Arg("email") email: string,
     @Arg("password") password: string
   ): Promise<User> {

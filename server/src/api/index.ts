@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiCharacter } from "src/types/apiResponses";
+import { ApiCharacter } from "../types/apiResponses";
 
 const accessToken = process.env.SUPERHERO_API_TOKEN;
 const baseUrl = `https://superheroapi.com/api/${accessToken}`;
