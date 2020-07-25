@@ -9,7 +9,7 @@ import { registerUserSchema } from "../../schemas/userSchemas";
 export default class RegisterResolver {
   @Query(() => String)
   requiredQuery() {
-    return "this is a required but is never used";
+    return "this is a required query but is never used";
   }
 
   @Mutation(() => User)
