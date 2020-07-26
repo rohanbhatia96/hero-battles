@@ -1,8 +1,7 @@
 import { ApolloError } from "apollo-server-express";
-import { Query, Resolver, UseMiddleware, Ctx } from "type-graphql";
+import { Ctx, Query, Resolver, UseMiddleware } from "type-graphql";
 import { User } from "../../entities";
 import { isAuth } from "../../middlewares/isAuth";
-import { verifyJwt } from "../../utils/jwtHandler";
 import { IContext } from "../../types/IContext";
 
 @Resolver()
@@ -11,13 +10,8 @@ export default class GeneralResolver {
   @UseMiddleware(isAuth)
   async getAllUserDetails(@Ctx() context: IContext): Promise<User> {
     try {
-      const token = context.req.headers.authorization;
-      if (!token) {
-        throw "Invalid authorization token.";
-      }
-      const jwtPayload = verifyJwt(token);
       const user: User | undefined = await User.findOne({
-        where: { id: jwtPayload.id },
+        where: { id: context.userId },
       });
       if (user) {
         return user;

@@ -15,7 +15,9 @@ export const isAuth: MiddlewareFn<IContext> = async ({ context }, next) => {
     const user: User | undefined = await User.findOne({
       where: { id: jwtPayload.id },
     });
-    if (!user) {
+    if (user) {
+      context.userId = jwtPayload.id;
+    } else {
       throw "Authorization token expired. Please login again";
     }
     return next();
