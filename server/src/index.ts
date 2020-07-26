@@ -13,7 +13,12 @@ const main = async () => {
     resolvers: resolvers,
   });
 
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    context: ({ req }) => {
+      return { req };
+    },
+  });
 
   const app = Express();
 
