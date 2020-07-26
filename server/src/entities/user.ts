@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 import { ObjectType, Field, Root } from "type-graphql";
-import jwt from "jsonwebtoken";
 import { ApolloError } from "apollo-server-express";
+import { generateJwt } from "../utils/jwtHandler";
 
 @ObjectType()
 @Entity()
@@ -32,12 +32,8 @@ export class User extends BaseEntity {
   @Field()
   auth_token(@Root() parent: User): string {
     try {
-      if (process.env.JWT_TOKEN) {
-        const token = jwt.sign({ id: parent.id }, process.env.JWT_TOKEN);
-        return token;
-      } else {
-        throw "Login Failed. Please Try Again";
-      }
+      const auth_token = generateJwt({ id: parent.id });
+      return auth_token;
     } catch (err) {
       throw new ApolloError(err);
     }

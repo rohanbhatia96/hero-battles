@@ -1,19 +1,25 @@
 import { MiddlewareFn } from "type-graphql";
 import { IContext } from "../types/IContext";
-import jwt from "jsonwebtoken";
 import { ApolloError } from "apollo-server-express";
+import { verifyJwt } from "../utils/jwtHandler";
+import { User } from "../entities";
 
-export const isAuth: MiddlewareFn<IContext> = ({ context }, next) => {
+export const isAuth: MiddlewareFn<IContext> = async ({ context }, next) => {
   const { req } = context;
   try {
-    const jwt_token: string | undefined = req.headers.authorization;
-    let decoded = null;
-    if (jwt_token && process.env.JWT_TOKEN) {
-      decoded = jwt.verify(jwt_token, process.env.JWT_TOKEN);
+    const token: string | undefined = req.headers.authorization;
+    if (!token) {
+      throw "Invalid authorization header. Please provide valid autorization token";
     }
-    console.log(decoded);
+    const jwtPayload = verifyJwt(token);
+    const user: User | undefined = await User.findOne({
+      where: { id: jwtPayload.id },
+    });
+    if (!user) {
+      throw "Authorization token expired. Please login again";
+    }
+    return next();
   } catch (err) {
-    throw new ApolloError("Authentication Failed");
+    throw new ApolloError(err);
   }
-  return next();
 };
