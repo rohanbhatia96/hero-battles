@@ -1,0 +1,25 @@
+.hero-container {
+  background-color: teal;
+  min-height: 400px;
+}
+.trending-image {
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.trending-char-container {
+  -webkit-box-shadow: 7px 6px 14px -6px rgba(209, 209, 209, 0.69);
+  -moz-box-shadow: 7px 6px 14px -6px rgba(209, 209, 209, 0.69);
+  box-shadow: 7px 6px 14px -6px rgba(209, 209, 209, 0.69);
+  background-color: #eefefe;
+  border-radius: 5px;
+}
+.trending-char-container:hover {
+    -webkit-box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
+    -moz-box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
+    box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
+    background-color: #ddfefd;
+    border-radius: 5px;
+    cursor: pointer;
+  }

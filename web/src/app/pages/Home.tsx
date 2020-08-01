@@ -1,16 +1,22 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { GET_TRENDING_CHARACTERS } from "../api/gqlQueries";
-import { Query } from "../../types/graphql";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import TrendingCharacters from "../../containers/TrendingCharacters";
 
 const Home = () => {
-  const { loading, error, data } = useQuery<Query>(GET_TRENDING_CHARACTERS);
   return (
-    <>
-      <p>Loading: {JSON.stringify(loading)}</p>
-      <p>Error: {JSON.stringify(error)}</p>
-      <p>Data: {JSON.stringify(data?.getTrendingCharacters)}</p>
-    </>
+    <Container fluid>
+      <Row className="hero-container"></Row>
+      <Row className="mt-5 mx-3">
+        <Col xs={12} md={8}>
+          <TrendingCharacters />
+        </Col>
+        <Col xs={12} md={4}>
+          Advertisement
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
