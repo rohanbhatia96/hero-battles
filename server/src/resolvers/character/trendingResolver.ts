@@ -33,7 +33,7 @@ export default class TrendingResolver {
       let avgSingleStats = 0;
       let ps: PowerStats;
       let c: Character;
-      while (idCount < 15) {
+      while (idCount < 14) {
         randomNum = Math.floor(Math.random() * 700);
         if (!randomIds.includes(randomNum)) {
           singleResponse = await getCharacterByID(randomNum);
@@ -45,7 +45,7 @@ export default class TrendingResolver {
               Number(singleResponse.powerstats.strength) +
               Number(singleResponse.powerstats.power)) /
             6;
-          if (avgSingleStats > 55) {
+          if (avgSingleStats > 65) {
             randomIds.push(randomNum);
             idCount++;
             ps = PowerStats.create({
