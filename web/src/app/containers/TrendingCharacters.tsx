@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
-import { GET_TRENDING_CHARACTERS } from "../app/api/gqlQueries";
+import { GET_TRENDING_CHARACTERS } from "../api/gqlQueries";
 import { Query } from "../types/graphql";
-import CharacterProfile from "../app/components/CharacterProfile";
+import CharacterProfile from "../components/CharacterProfile";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
