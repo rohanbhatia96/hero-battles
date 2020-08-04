@@ -29,6 +29,7 @@ const TrendingCharacters: React.FC<{}> = () => {
         data.getTrendingCharacters.map((character) => (
           <Col xs={12} md={6} key={character.name}>
             <CharacterProfile
+              id={character.id}
               name={character.name}
               imageUrl={
                 character.imageUrl ? character.imageUrl : defaultImageUrl

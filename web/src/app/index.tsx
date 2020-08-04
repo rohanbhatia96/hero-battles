@@ -1,7 +1,10 @@
 import React from "react";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import "./css/styles.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
+import Character from "./pages/Character";
+import Error404 from "./pages/404";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -17,7 +20,13 @@ function App() {
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
         crossOrigin="anonymous"
       />
-      <Home />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/character/:id" exact component={Character} />
+          <Route path="/" component={Error404} />
+        </Switch>
+      </BrowserRouter>
     </ApolloProvider>
   );
 }

@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TrendingCharacters from "../containers/TrendingCharacters";
 
-const Home = () => {
+const Home: React.FC<{}> = () => {
   return (
     <Container fluid>
       <Row className="hero-container"></Row>

@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const GET_TRENDING_CHARACTERS = gql`
   query GTC {
     getTrendingCharacters {
+      id
       name
       alignment
       imageUrl

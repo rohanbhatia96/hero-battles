@@ -35,6 +35,7 @@ export type User = {
 
 export type Character = {
   __typename?: 'Character';
+  id: Scalars['Float'];
   name: Scalars['String'];
   realName?: Maybe<Scalars['String']>;
   imageUrl?: Maybe<Scalars['String']>;
