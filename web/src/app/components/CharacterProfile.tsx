@@ -8,6 +8,7 @@ type IProps = {
   imageUrl: string;
   averagePower: number;
   alignment: string;
+  publisher: string;
 };
 
 const CharacterProfile: React.FC<IProps> = ({
@@ -15,21 +16,30 @@ const CharacterProfile: React.FC<IProps> = ({
   imageUrl,
   averagePower,
   alignment,
+  publisher,
 }) => {
   return (
     <Row className="trending-char-container my-2 py-3 px-1 m-md-3 p-md-3">
-      <Col xs={5} md={3}>
+      <Col xs={4} md={3}>
         <Image
           src={imageUrl}
           className="trending-image rounded mx-auto d-block"
         />
       </Col>
-      <Col xs={7} md={9}>
+      <Col xs={6} md={6}>
+        <Row className="trending-char-title">{name}</Row>
         <Row>
-          <h5>{name}</h5>
+          <span
+            style={{ backgroundColor: alignment === "good" ? "green" : "red" }}
+            className="trending-char-alignment"
+          >
+            {alignment.toLocaleUpperCase()}
+          </span>
         </Row>
-        <Row>{alignment}</Row>
-        <Row>{averagePower}</Row>
+        <Row>{publisher}</Row>
+      </Col>
+      <Col xs={2} md={3}>
+        <Row className="trending-char-power">{averagePower}</Row>
       </Col>
     </Row>
   );

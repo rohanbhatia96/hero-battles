@@ -16,10 +16,22 @@
   border-radius: 5px;
 }
 .trending-char-container:hover {
-    -webkit-box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
-    -moz-box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
-    box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
-    background-color: #ddfefd;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  -webkit-box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
+  -moz-box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
+  box-shadow: 8px 7px 6px -7px rgba(209, 209, 209, 0.69);
+  background-color: #ddfefd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.trending-char-title {
+  font-weight: 800;
+  font-size: 24px;
+}
+.trending-char-alignment {
+  font-weight: 600;
+  padding: 4px 8px 4px 8px;
+  color: #fff;
+}
+.trending-char-power {
+  font-size: 44px;
+}

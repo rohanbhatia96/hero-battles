@@ -6,10 +6,14 @@ export const GET_TRENDING_CHARACTERS = gql`
       name
       alignment
       imageUrl
+      publisher
       powerStats {
         power
         speed
         intelligence
+        combat
+        durability
+        strength
       }
     }
   }
