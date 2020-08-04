@@ -11,6 +11,7 @@ import { PowerStats } from "./powerStats";
 @ObjectType()
 @Entity()
 export class Character extends BaseEntity {
+  @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
