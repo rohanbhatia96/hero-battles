@@ -18,5 +18,5 @@ export class SearchCharacter {
   publisher: string;
 
   @Field()
-  avergaeRating: number;
+  averageRating: number;
 }

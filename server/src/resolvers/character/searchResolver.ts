@@ -3,6 +3,7 @@ import { Query, Resolver, Arg } from "type-graphql";
 import { SearchCharacter } from "../../entities";
 import { getCharactersBySearch } from "../../api";
 import { BaseApiCharacter } from "../../types/apiResponses";
+import { findAverageRating } from "../../utils/findAverageRating";
 
 @Resolver()
 export default class SearchResolver {
@@ -23,7 +24,7 @@ export default class SearchResolver {
           imageUrl: character.image.url,
           alignment: character.biography.alignment,
           publisher: character.biography.publisher,
-          avergaeRating: 60,
+          averageRating: findAverageRating(character.powerstats),
         };
         searchResult.push(temp);
       });

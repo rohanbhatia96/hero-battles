@@ -3,6 +3,7 @@ import { ApiCharacter } from "../../types/apiResponses";
 import { Mutation, Query, Resolver } from "type-graphql";
 import { getCharacterByID } from "../../api";
 import { Character, PowerStats } from "../../entities";
+import { findAverageRating } from "../../utils/findAverageRating";
 
 @Resolver()
 export default class TrendingResolver {
@@ -30,24 +31,15 @@ export default class TrendingResolver {
       let randomNum: number;
       let trendingCharacters: Character[] = [];
       let singleResponse: ApiCharacter;
-      let avgSingleStats = 0;
+      let averageRating = 0;
       let ps: PowerStats;
       let c: Character;
       while (idCount < 14) {
         randomNum = Math.floor(Math.random() * 700);
         if (!randomIds.includes(randomNum)) {
           singleResponse = await getCharacterByID(randomNum);
-          avgSingleStats =
-            (Number(singleResponse.powerstats.intelligence) +
-              Number(singleResponse.powerstats.combat) +
-              Number(singleResponse.powerstats.durability) +
-              Number(singleResponse.powerstats.speed) +
-              Number(singleResponse.powerstats.strength) +
-              Number(singleResponse.powerstats.power)) /
-            6;
-          if (avgSingleStats > 65) {
-            randomIds.push(randomNum);
-            idCount++;
+          averageRating = findAverageRating(singleResponse.powerstats);
+          if (averageRating > 75) {
             ps = PowerStats.create({
               intelligence: +singleResponse.powerstats.intelligence | 0,
               strength: +singleResponse.powerstats.strength | 0,
@@ -66,8 +58,10 @@ export default class TrendingResolver {
               isTrending: true,
               powerStats: ps,
             }).save();
+            idCount++;
             trendingCharacters.push(c);
           }
+          randomIds.push(randomNum);
         }
       }
       return trendingCharacters;
