@@ -19,3 +19,20 @@ export const GET_TRENDING_CHARACTERS = gql`
     }
   }
 `;
+
+export const GET_SINGLE_CHARACTER = gql`
+  query getSingleCharacter($id: Float!) {
+    getSingleCharacter(id: $id) {
+      name
+      alignment
+      powerStats {
+        power
+        speed
+        intelligence
+        combat
+        durability
+        strength
+      }
+    }
+  }
+`;
