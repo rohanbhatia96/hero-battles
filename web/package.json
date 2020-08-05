@@ -44,6 +44,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.6",
     "@graphql-codegen/typescript": "^1.17.6",
+    "@types/react-bootstrap": "^1.0.1",
     "@types/react-router-dom": "^5.1.5"
   }
 }
