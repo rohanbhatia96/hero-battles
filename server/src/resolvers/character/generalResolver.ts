@@ -21,6 +21,7 @@ export default class MainResolver {
     try {
       const char = await Character.findOne({
         where: { id },
+        relations: ["powerStats"],
       });
       if (char) {
         return char;
