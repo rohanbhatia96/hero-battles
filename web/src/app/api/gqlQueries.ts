@@ -36,3 +36,14 @@ export const GET_SINGLE_CHARACTER = gql`
     }
   }
 `;
+
+export const GET_SEARCH_RESULT = gql`
+  query getCharactersFromSearch($searchTerm: String!) {
+    getCharactersFromSearch(searchTerm: $searchTerm) {
+      averageRating
+      name
+      alignment
+      apiId
+    }
+  }
+`;
