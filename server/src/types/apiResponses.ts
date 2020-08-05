@@ -9,11 +9,11 @@ export type PowerStats = {
 
 export type Biography = {
   name: string;
-  'full-name': string;
-  'alter-egos': string | string[];
+  "full-name": string;
+  "alter-egos": string | string[];
   aliases: string | string[];
-  'place-of-birth': string;
-  'first-appearance': string;
+  "place-of-birth": string;
+  "first-appearance": string;
   publisher: string;
   alignment: string;
 };
@@ -23,8 +23,8 @@ export type Appearance = {
   race: string;
   height: string[];
   weight: string[];
-  'eye-color': string;
-  'hair-color': string;
+  "eye-color": string;
+  "hair-color": string;
 };
 
 export type Work = {
@@ -33,7 +33,7 @@ export type Work = {
 };
 
 export type Connections = {
-  'group-affiliation': string;
+  "group-affiliation": string;
   relatives: string;
 };
 
@@ -41,8 +41,7 @@ export type Image = {
   url: string;
 };
 
-export interface ApiCharacter {
-  response: string;
+export type BaseApiCharacter = {
   id: string;
   name: string;
   powerstats: PowerStats;
@@ -51,4 +50,14 @@ export interface ApiCharacter {
   work: Work;
   connections: Connections;
   image: Image;
+};
+
+export interface ApiCharacter extends BaseApiCharacter {
+  response: string;
+}
+
+export interface SearchResult {
+  response: string;
+  "results-for": string;
+  results: Array<BaseApiCharacter>;
 }
