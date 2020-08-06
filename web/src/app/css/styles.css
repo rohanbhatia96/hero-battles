@@ -35,3 +35,18 @@
 .trending-char-power {
   font-size: 44px;
 }
+.search-results {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border-color: black;
+  border-width: 2px;
+  z-index: 90;
+  border-style: solid;
+}
+.remove-margin {
+  margin: 0px !important;
+}
+.remove-padding {
+  padding: 0px !important;
+}

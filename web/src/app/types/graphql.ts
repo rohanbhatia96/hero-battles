@@ -15,6 +15,8 @@ export type Query = {
   login: User;
   getTrendingCharacters: Array<Character>;
   getAllCharacters: Array<Character>;
+  getSingleCharacter: Character;
+  getCharactersFromSearch: Array<SearchCharacter>;
   getAllUserDetails: User;
 };
 
@@ -22,6 +24,16 @@ export type Query = {
 export type QueryLoginArgs = {
   password: Scalars['String'];
   email: Scalars['String'];
+};
+
+
+export type QueryGetSingleCharacterArgs = {
+  id: Scalars['Float'];
+};
+
+
+export type QueryGetCharactersFromSearchArgs = {
+  searchTerm: Scalars['String'];
 };
 
 export type User = {
@@ -55,6 +67,16 @@ export type PowerStats = {
   power: Scalars['Float'];
   combat: Scalars['Float'];
   character: Character;
+};
+
+export type SearchCharacter = {
+  __typename?: 'SearchCharacter';
+  apiId: Scalars['Float'];
+  name: Scalars['String'];
+  imageUrl?: Maybe<Scalars['String']>;
+  alignment: Scalars['String'];
+  publisher: Scalars['String'];
+  averageRating: Scalars['Float'];
 };
 
 export type Mutation = {
