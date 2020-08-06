@@ -34,7 +34,7 @@ export default class TrendingResolver {
       let singleResponse: ApiCharacter;
       let averageRating = 0;
       let c: Character;
-      while (idCount < 3) {
+      while (idCount < 14) {
         randomNum = Math.floor(Math.random() * 700);
         if (!randomIds.includes(randomNum)) {
           singleResponse = await getCharacterByID(randomNum);
