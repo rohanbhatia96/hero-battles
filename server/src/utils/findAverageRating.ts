@@ -1,6 +1,6 @@
-import { PowerStats } from "../types/apiResponses";
+import { ApiPowerStats } from "../types/apiResponses";
 
-export const findAverageRating = (powerStats: PowerStats): number => {
+export const findAverageRating = (powerStats: ApiPowerStats): number => {
   let sum =
     (Number(powerStats.intelligence) | 0) +
     (Number(powerStats.combat) | 0) +

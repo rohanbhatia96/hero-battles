@@ -8,7 +8,13 @@ export default class MainResolver {
   async getAllCharacters(): Promise<Character[]> {
     try {
       const chars = await Character.find({
-        relations: ["powerStats"],
+        relations: [
+          "powerStats",
+          "work",
+          "appearance",
+          "connections",
+          "biography",
+        ],
       });
       return chars;
     } catch (err) {
@@ -21,7 +27,13 @@ export default class MainResolver {
     try {
       const char = await Character.findOne({
         where: { id },
-        relations: ["powerStats"],
+        relations: [
+          "powerStats",
+          "work",
+          "appearance",
+          "connections",
+          "biography",
+        ],
       });
       if (char) {
         return char;

@@ -1,4 +1,4 @@
-export type PowerStats = {
+export type ApiPowerStats = {
   intelligence: string;
   strength: string;
   speed: string;
@@ -7,7 +7,7 @@ export type PowerStats = {
   combat: string;
 };
 
-export type Biography = {
+export type ApiBiography = {
   name: string;
   "full-name": string;
   "alter-egos": string | string[];
@@ -18,7 +18,7 @@ export type Biography = {
   alignment: string;
 };
 
-export type Appearance = {
+export type ApiAppearance = {
   gender: string;
   race: string;
   height: string[];
@@ -27,29 +27,29 @@ export type Appearance = {
   "hair-color": string;
 };
 
-export type Work = {
+export type ApiWork = {
   occupation: string;
   base: string;
 };
 
-export type Connections = {
+export type ApiConnections = {
   "group-affiliation": string;
   relatives: string;
 };
 
-export type Image = {
+export type ApiImage = {
   url: string;
 };
 
 export type BaseApiCharacter = {
   id: string;
   name: string;
-  powerstats: PowerStats;
-  biography: Biography;
-  appearance: Appearance;
-  work: Work;
-  connections: Connections;
-  image: Image;
+  powerstats: ApiPowerStats;
+  biography: ApiBiography;
+  appearance: ApiAppearance;
+  work: ApiWork;
+  connections: ApiConnections;
+  image: ApiImage;
 };
 
 export interface ApiCharacter extends BaseApiCharacter {

@@ -2,8 +2,9 @@ import { ApolloError } from "apollo-server-express";
 import { ApiCharacter } from "../../types/apiResponses";
 import { Mutation, Query, Resolver } from "type-graphql";
 import { getCharacterByID } from "../../api";
-import { Character, PowerStats } from "../../entities";
+import { Character } from "../../entities";
 import { findAverageRating } from "../../utils/findAverageRating";
+import { extract } from "../../utils/extractFromApiResponse";
 
 @Resolver()
 export default class TrendingResolver {
@@ -32,22 +33,20 @@ export default class TrendingResolver {
       let trendingCharacters: Character[] = [];
       let singleResponse: ApiCharacter;
       let averageRating = 0;
-      let ps: PowerStats;
       let c: Character;
-      while (idCount < 14) {
+      while (idCount < 3) {
         randomNum = Math.floor(Math.random() * 700);
         if (!randomIds.includes(randomNum)) {
           singleResponse = await getCharacterByID(randomNum);
           averageRating = findAverageRating(singleResponse.powerstats);
           if (averageRating > 75) {
-            ps = PowerStats.create({
-              intelligence: +singleResponse.powerstats.intelligence | 0,
-              strength: +singleResponse.powerstats.strength | 0,
-              speed: +singleResponse.powerstats.speed | 0,
-              durability: +singleResponse.powerstats.durability | 0,
-              power: +singleResponse.powerstats.power | 0,
-              combat: +singleResponse.powerstats.combat | 0,
-            });
+            let {
+              characterStats,
+              characterAppearance,
+              characterBio,
+              characterWork,
+              characterConnections,
+            } = extract(singleResponse);
             c = await Character.create({
               apiID: +singleResponse.id,
               name: singleResponse.name,
@@ -56,7 +55,11 @@ export default class TrendingResolver {
               alignment: singleResponse.biography.alignment,
               publisher: singleResponse.biography.publisher,
               isTrending: true,
-              powerStats: ps,
+              powerStats: characterStats,
+              appearance: characterAppearance,
+              work: characterWork,
+              biography: characterBio,
+              connections: characterConnections,
             }).save();
             idCount++;
             trendingCharacters.push(c);

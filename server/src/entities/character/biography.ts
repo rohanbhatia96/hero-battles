@@ -7,41 +7,33 @@ import {
   OneToOne,
   JoinColumn,
 } from "typeorm";
-import { Character } from ".";
+import { Character } from "./character";
 
 @ObjectType()
 @Entity()
-export class PowerStats extends BaseEntity {
+export class Biography extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @Column()
-  intelligence: number;
+  alterEgos: string;
 
   @Field()
   @Column()
-  strength: number;
+  aliases: string;
 
   @Field()
   @Column()
-  speed: number;
+  placeOfBirth: string;
 
   @Field()
   @Column()
-  durability: number;
-
-  @Field()
-  @Column()
-  power: number;
-
-  @Field()
-  @Column()
-  combat: number;
+  firstAppearance: string;
 
   @Field((_type) => Character)
-  @OneToOne((_type) => Character, (character) => character.powerStats, {
+  @OneToOne((_type) => Character, (character) => character.biography, {
     onDelete: "CASCADE",
   })
   @JoinColumn()
