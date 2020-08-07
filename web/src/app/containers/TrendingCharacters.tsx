@@ -22,7 +22,7 @@ const TrendingCharacters: React.FC<{}> = () => {
     return Math.floor(sum / 6);
   };
   return (
-    <Row className="mt-n4">
+    <Row className="mt-4">
       {!loading &&
         !error &&
         data &&
