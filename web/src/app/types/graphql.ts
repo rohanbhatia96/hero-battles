@@ -28,7 +28,8 @@ export type QueryLoginArgs = {
 
 
 export type QueryGetSingleCharacterArgs = {
-  id: Scalars['Float'];
+  apiId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
 };
 
 
@@ -55,6 +56,10 @@ export type Character = {
   publisher: Scalars['String'];
   isTrending: Scalars['Boolean'];
   powerStats: PowerStats;
+  appearance: Appearance;
+  work: Work;
+  connections: Connections;
+  biography: Biography;
 };
 
 export type PowerStats = {
@@ -66,6 +71,44 @@ export type PowerStats = {
   durability: Scalars['Float'];
   power: Scalars['Float'];
   combat: Scalars['Float'];
+  character: Character;
+};
+
+export type Appearance = {
+  __typename?: 'Appearance';
+  id: Scalars['Float'];
+  gender: Scalars['String'];
+  race: Scalars['String'];
+  height: Scalars['String'];
+  weight: Scalars['String'];
+  eyeColor: Scalars['String'];
+  hairColor: Scalars['String'];
+  character: Character;
+};
+
+export type Work = {
+  __typename?: 'Work';
+  id: Scalars['Float'];
+  occupation: Scalars['String'];
+  base: Scalars['String'];
+  character: Character;
+};
+
+export type Connections = {
+  __typename?: 'Connections';
+  id: Scalars['Float'];
+  groupAffiliations: Scalars['String'];
+  relatives: Scalars['String'];
+  character: Character;
+};
+
+export type Biography = {
+  __typename?: 'Biography';
+  id: Scalars['Float'];
+  alterEgos: Scalars['String'];
+  aliases: Scalars['String'];
+  placeOfBirth: Scalars['String'];
+  firstAppearance: Scalars['String'];
   character: Character;
 };
 
