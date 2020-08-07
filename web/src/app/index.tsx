@@ -23,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/character/:id" exact component={Character} />
+          <Route path="/character/:id/:fetchFrom?" exact component={Character} />
           <Route path="/" component={Error404} />
         </Switch>
       </BrowserRouter>

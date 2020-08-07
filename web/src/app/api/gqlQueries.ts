@@ -24,7 +24,11 @@ export const GET_SINGLE_CHARACTER = gql`
   query getSingleCharacter($id: Float!) {
     getSingleCharacter(id: $id) {
       name
+      realName
+      imageUrl
       alignment
+      publisher
+      isTrending
       powerStats {
         power
         speed
@@ -32,6 +36,71 @@ export const GET_SINGLE_CHARACTER = gql`
         combat
         durability
         strength
+      }
+      appearance {
+        gender
+        race
+        height
+        weight
+        eyeColor
+        hairColor
+      }
+      work {
+        occupation
+        base
+      }
+      connections {
+        groupAffiliations
+        relatives
+      }
+      biography {
+        alterEgos
+        aliases
+        placeOfBirth
+        firstAppearance
+      }
+    }
+  }
+`;
+
+export const GET_SINGLE_CHARACTER_FROM_API_ID = gql`
+  query getSingleCharacterFromApiId($apiId: Float!) {
+    getSingleCharacter(apiId: $apiId) {
+      name
+      realName
+      imageUrl
+      alignment
+      publisher
+      isTrending
+      powerStats {
+        power
+        speed
+        intelligence
+        combat
+        durability
+        strength
+      }
+      appearance {
+        gender
+        race
+        height
+        weight
+        eyeColor
+        hairColor
+      }
+      work {
+        occupation
+        base
+      }
+      connections {
+        groupAffiliations
+        relatives
+      }
+      biography {
+        alterEgos
+        aliases
+        placeOfBirth
+        firstAppearance
       }
     }
   }
