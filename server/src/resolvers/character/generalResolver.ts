@@ -35,7 +35,7 @@ export default class MainResolver {
         finalKey = "id";
       } else if (apiId) {
         finalId = apiId;
-        finalKey = "apiID";
+        finalKey = "apiId";
       } else {
         throw "No valid Id provided";
       }

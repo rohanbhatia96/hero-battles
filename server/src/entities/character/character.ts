@@ -20,7 +20,7 @@ export class Character extends BaseEntity {
   id: number;
 
   @Column("int", { unique: true })
-  apiID: number;
+  apiId: number;
 
   @Field()
   @Column()

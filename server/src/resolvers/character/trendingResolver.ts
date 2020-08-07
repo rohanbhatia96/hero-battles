@@ -54,7 +54,7 @@ export default class TrendingResolver {
               characterConnections,
             } = extract(singleResponse);
             c = await Character.create({
-              apiID: +singleResponse.id,
+              apiId: +singleResponse.id,
               name: singleResponse.name,
               realName: singleResponse.biography["full-name"],
               imageUrl: singleResponse.image.url,
