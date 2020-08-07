@@ -5,6 +5,7 @@ import { GET_SEARCH_RESULT } from "../api/gqlQueries";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { Link } from "react-router-dom";
 
 const Searchbar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<String>("");
@@ -47,9 +48,16 @@ const Searchbar: React.FC = () => {
             {!loading &&
               data &&
               data.getCharactersFromSearch.slice(0, 6).map((character) => (
-                <p>
-                  {character.name} {character.averageRating}
-                </p>
+                <div
+                  key={character.apiId}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                  }}
+                >
+                  <Link to={`/character/${character.apiId}/external`}>
+                    {character.name} {character.averageRating}
+                  </Link>
+                </div>
               ))}
           </Col>
         </Row>
