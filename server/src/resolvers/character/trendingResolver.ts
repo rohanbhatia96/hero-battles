@@ -13,7 +13,13 @@ export default class TrendingResolver {
     try {
       const trendingCharacters = await Character.find({
         where: { isTrending: true },
-        relations: ["powerStats"],
+        relations: [
+          "powerStats",
+          "work",
+          "appearance",
+          "connections",
+          "biography",
+        ],
       });
       return trendingCharacters;
     } catch (err) {
