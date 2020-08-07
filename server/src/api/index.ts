@@ -11,7 +11,12 @@ const baseUrl = `https://superheroapi.com/api/${accessToken}`;
 export const getCharacterByID = async (id: number): Promise<ApiCharacter> => {
   try {
     const response = await axios.get<ApiCharacter>(`${baseUrl}/${id}`);
-    return response.data;
+    if(response.data.response === "success"){
+      return response.data;
+    }
+    else {
+      throw "Can't find superhero :("
+    }
   } catch (err) {
     console.log(err);
     throw "Can't connect to Superhero API";
