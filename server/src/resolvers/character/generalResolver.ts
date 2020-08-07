@@ -23,10 +23,24 @@ export default class MainResolver {
   }
 
   @Query(() => Character)
-  async getSingleCharacter(@Arg("id") id: number): Promise<Character> {
+  async getSingleCharacter(
+    @Arg("id", { defaultValue: null }) id: number,
+    @Arg("apiId", { defaultValue: null }) apiId: number
+  ): Promise<Character> {
     try {
+      let finalId: number | null = null;
+      let finalKey: string = "";
+      if (id) {
+        finalId = id;
+        finalKey = "id";
+      } else if (apiId) {
+        finalId = apiId;
+        finalKey = "apiID";
+      } else {
+        throw "No valid Id provided";
+      }
       const char = await Character.findOne({
-        where: { id },
+        where: { [finalKey]: finalId },
         relations: [
           "powerStats",
           "work",
