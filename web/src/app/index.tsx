@@ -4,6 +4,7 @@ import "./css/styles.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Character from "./pages/Character";
+import Login from "./pages/Login";
 import Error404 from "./pages/404";
 
 const client = new ApolloClient({
@@ -23,7 +24,12 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/character/:id/:fetchFrom?" exact component={Character} />
+          <Route
+            path="/character/:id/:fetchFrom?"
+            exact
+            component={Character}
+          />
+          <Route path="/login" exact component={Login} />
           <Route path="/" component={Error404} />
         </Switch>
       </BrowserRouter>
