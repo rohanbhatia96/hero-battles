@@ -11,11 +11,11 @@ export class User extends BaseEntity {
 
   @Field()
   @Column()
-  firstName: string;
+  name: string;
 
-  @Field({ nullable: true })
-  @Column({ nullable: true })
-  lastName: string;
+  @Field()
+  @Column("text", { unique: true })
+  username: string;
 
   @Field()
   @Column("text", { unique: true })
@@ -25,12 +25,7 @@ export class User extends BaseEntity {
   password: string;
 
   @Field()
-  name(@Root() parent: User): string {
-    return `${parent.firstName} ${parent.lastName}`;
-  }
-
-  @Field()
-  auth_token(@Root() parent: User): string {
+  authToken(@Root() parent: User): string {
     try {
       const auth_token = generateJwt({ id: parent.id });
       return auth_token;

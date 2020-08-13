@@ -15,16 +15,16 @@ export default class RegisterResolver {
   @Mutation(() => User)
   @ValidateArgs(registerUserSchema)
   async register(
-    @Arg("firstName") firstName: string,
-    @Arg("lastName", {defaultValue: ""}) lastName: string,
+    @Arg("name") name: string,
+    @Arg("username") username: string,
     @Arg("email") email: string,
     @Arg("password") password: string
   ): Promise<User> {
     try {
       let encryptedPassword = await bcrypt.hash(password, 10);
       const user: User = await User.create({
-        firstName,
-        lastName,
+        name,
+        username,
         email,
         password: encryptedPassword,
       }).save();
