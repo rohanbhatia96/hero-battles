@@ -39,11 +39,10 @@ export type QueryGetCharactersFromSearchArgs = {
 
 export type User = {
   __typename?: 'User';
-  firstName: Scalars['String'];
-  lastName?: Maybe<Scalars['String']>;
-  email: Scalars['String'];
   name: Scalars['String'];
-  auth_token: Scalars['String'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  authToken: Scalars['String'];
 };
 
 export type Character = {
@@ -132,6 +131,6 @@ export type Mutation = {
 export type MutationRegisterArgs = {
   password: Scalars['String'];
   email: Scalars['String'];
-  lastName?: Maybe<Scalars['String']>;
-  firstName: Scalars['String'];
+  username: Scalars['String'];
+  name: Scalars['String'];
 };

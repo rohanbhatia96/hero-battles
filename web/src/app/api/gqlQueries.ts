@@ -116,3 +116,31 @@ export const GET_SEARCH_RESULT = gql`
     }
   }
 `;
+
+export const REGISTER_USER = gql`
+  mutation register(
+    $name: String!
+    $username: String!
+    $email: String!
+    $password: String!
+  ) {
+    register(
+      name: $name
+      username: $username
+      email: $email
+      password: $password
+    ) {
+      authToken
+      username
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  query login($email: String!, $password: String!) {
+    login(password: $password, email: $email) {
+      authToken
+      username
+    }
+  }
+`;
