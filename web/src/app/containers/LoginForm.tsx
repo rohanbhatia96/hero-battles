@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store/types/reducers";
 import { useLazyQuery } from "@apollo/client";
-import { LOGIN_USER } from "../api/gqlQueries";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { Query, QueryLoginArgs } from "../types/graphql";
 import { Formik, FormikHelpers } from "formik";
+import React from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { LOGIN_USER } from "../api/gqlQueries";
 import userLoginSchema from "../schemas/userLoginSchema";
+import { RootState } from "../store/types/reducers";
+import { Query, QueryLoginArgs } from "../types/graphql";
 
 interface FormValues {
   email: string;
@@ -72,7 +72,9 @@ const LoginForm: React.FC = () => {
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
-              <Form.Text className="text-danger">{errors.email}</Form.Text>
+              <Form.Text className="text-danger">
+                &#x200B;{errors.email}
+              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="password">
@@ -82,7 +84,9 @@ const LoginForm: React.FC = () => {
                 placeholder="Password"
                 onChange={handleChange}
               />
-              <Form.Text className="text-danger">{errors.password}</Form.Text>
+              <Form.Text className="text-danger">
+                &#x200B;{errors.password}
+              </Form.Text>
             </Form.Group>
             <Button
               type="submit"
