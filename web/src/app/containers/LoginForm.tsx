@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Query, QueryLoginArgs } from "../types/graphql";
 import { Formik, FormikHelpers } from "formik";
+import userLoginSchema from "../schemas/userLoginSchema";
 
 interface FormValues {
   email: string;
@@ -49,8 +50,12 @@ const LoginForm: React.FC = () => {
   };
   return (
     <>
-      <Formik initialValues={initialFormValues} onSubmit={submitLoginForm}>
-        {({ handleChange, handleSubmit, isSubmitting }) => (
+      <Formik
+        initialValues={initialFormValues}
+        onSubmit={submitLoginForm}
+        validationSchema={userLoginSchema}
+      >
+        {({ handleChange, handleSubmit, errors, isSubmitting, isValid }) => (
           <Form
             noValidate
             onSubmit={(e) => {
@@ -67,6 +72,7 @@ const LoginForm: React.FC = () => {
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
+              <Form.Text className="text-danger">{errors.email}</Form.Text>
             </Form.Group>
 
             <Form.Group controlId="password">
@@ -76,8 +82,12 @@ const LoginForm: React.FC = () => {
                 placeholder="Password"
                 onChange={handleChange}
               />
+              <Form.Text className="text-danger">{errors.password}</Form.Text>
             </Form.Group>
-            <Button type="submit" disabled={isSubmitting || loading}>
+            <Button
+              type="submit"
+              disabled={isSubmitting || loading || !isValid}
+            >
               Submit
             </Button>
           </Form>
