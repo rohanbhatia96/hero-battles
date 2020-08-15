@@ -10,6 +10,7 @@ import Error404 from "./pages/404";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store";
+import Battle from "./pages/Battle";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -37,6 +38,7 @@ function App() {
               />
               <Route path="/login" exact component={Login} />
               <Route path="/register" exact component={Register} />
+              <Route path="/battle" exact component={Battle} />
               <Route path="/" component={Error404} />
             </Switch>
           </BrowserRouter>

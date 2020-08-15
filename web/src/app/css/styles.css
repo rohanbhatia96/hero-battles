@@ -1,6 +1,11 @@
 .hero-container {
-  background-color: teal;
+  background-image: url(/images/hero-image.jpg);
+  background-color: black;
   min-height: 400px;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+
 }
 .trending-image {
   width: 100%;
