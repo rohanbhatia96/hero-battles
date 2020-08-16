@@ -5,7 +5,6 @@
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: center;
-
 }
 .trending-image {
   width: 100%;
@@ -54,4 +53,20 @@
 }
 .remove-padding {
   padding: 0px !important;
+}
+.form-container {
+  background-color: #e4f4f7;
+  border-radius: 5px;
+}
+.login-button-text {
+  font-size: large;
+}
+.login-upper-header {
+  font-size: large;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.login-upper-subtext {
+  font-size: small;
+  font-weight: 400;
 }
