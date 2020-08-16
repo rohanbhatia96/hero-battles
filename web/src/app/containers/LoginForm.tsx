@@ -3,13 +3,12 @@ import { Formik, FormikHelpers } from "formik";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { useDispatch, useSelector } from "react-redux";
+import Modal from "react-bootstrap/Modal";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { LOGIN_USER } from "../api/gqlQueries";
 import userLoginSchema from "../schemas/userLoginSchema";
-import { RootState } from "../store/types/reducers";
 import { Query, QueryLoginArgs } from "../types/graphql";
 
 interface FormValues {
@@ -17,12 +16,6 @@ interface FormValues {
   password: string;
 }
 const LoginForm: React.FC = () => {
-  const isLoggedIn = useSelector(
-    (state: RootState) => state.loginStateReducer.isLoggedIn
-  );
-  const authToken = useSelector(
-    (state: RootState) => state.loginStateReducer.authToken
-  );
   const [isModal, setIsModal] = useState<boolean>(false);
   const handleModalClose = () => {
     setIsModal(false);
@@ -122,10 +115,6 @@ const LoginForm: React.FC = () => {
       </Col>
       <Col xs={12} className="my-4 text-center">
         <Link to="/register">Don't have an account? Register here.</Link>
-        {error && <p>error: {error.message}</p>}
-        <p>isLoggedIn(redux): {JSON.stringify(isLoggedIn)}</p>
-        <p>authToken(redux): {JSON.stringify(authToken)}</p>
-        <p>data: {JSON.stringify(data)}</p>
       </Col>
       <Col xs={12}>
         <Modal show={isModal}>
