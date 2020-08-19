@@ -13,19 +13,18 @@ const loginStateReducer = (
 ): LoginState => {
   switch (action.type) {
     case SET_LOGIN_STATE:
-      state = {
+      return {
         ...state,
         isLoggedIn: action.payload,
       };
-      break;
     case SET_AUTH_TOKEN:
-      state = {
+      return {
         ...state,
         authToken: action.payload,
       };
-      break;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default loginStateReducer;
