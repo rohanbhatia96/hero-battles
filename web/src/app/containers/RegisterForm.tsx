@@ -106,9 +106,6 @@ const RegisterForm: React.FC = () => {
                     placeholder="Enter email"
                     onChange={handleChange}
                   />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
                   <Form.Text className="text-danger">
                     &#x200B;{errors.email}
                   </Form.Text>
