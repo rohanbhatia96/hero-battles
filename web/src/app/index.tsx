@@ -4,7 +4,7 @@ import "./css/styles.css";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store";
-import CustomRouter from "./router";
+import Wrapper from "./wrapper";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -22,7 +22,7 @@ function App() {
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
             crossOrigin="anonymous"
           />
-          <CustomRouter />
+          <Wrapper />
         </ApolloProvider>
       </PersistGate>
     </Provider>

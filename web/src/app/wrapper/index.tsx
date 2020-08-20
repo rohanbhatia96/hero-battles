@@ -9,7 +9,7 @@ import Battle from "../pages/Battle";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/types/reducers";
 
-const CustomRouter: React.FC = () => {
+const Wrapper: React.FC = () => {
   const isLoggedIn = useSelector(
     (state: RootState) => state.loginStateReducer.isLoggedIn
   );
@@ -33,4 +33,4 @@ const CustomRouter: React.FC = () => {
   );
 };
 
-export default CustomRouter;
+export default Wrapper;
