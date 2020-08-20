@@ -141,7 +141,7 @@ const RegisterForm: React.FC = () => {
                   disabled={isSubmitting || loading || !isValid}
                   block
                 >
-                  Create Account
+                  <span className="login-button-text">Create Account</span>
                 </Button>
               </Form>
             )}
