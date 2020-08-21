@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useHistory } from "react-router-dom";
 import Searchbar from "../containers/Searchbar";
@@ -10,7 +9,7 @@ import TrendingCharacters from "../containers/TrendingCharacters";
 const Home: React.FC<{}> = () => {
   const history = useHistory();
   return (
-    <Container fluid>
+    <>
       <Row className="hero-container align-items-center">
         <Col xs={12} className="d-flex justify-content-center">
           <Button
@@ -32,7 +31,7 @@ const Home: React.FC<{}> = () => {
           Advertisement
         </Col>
       </Row>
-    </Container>
+    </>
   );
 };
 
