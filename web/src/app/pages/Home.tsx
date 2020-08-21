@@ -9,7 +9,7 @@ import TrendingCharacters from "../containers/TrendingCharacters";
 const Home: React.FC<{}> = () => {
   const history = useHistory();
   return (
-    <>
+    <Col>
       <Row className="hero-container align-items-center">
         <Col xs={12} className="d-flex justify-content-center">
           <Button
@@ -31,7 +31,7 @@ const Home: React.FC<{}> = () => {
           Advertisement
         </Col>
       </Row>
-    </>
+    </Col>
   );
 };
 

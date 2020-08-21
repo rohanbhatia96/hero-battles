@@ -1,18 +1,17 @@
 import React from "react";
 import LoginForm from "../containers/LoginForm";
-import Container from "react-bootstrap/esm/Container";
-import Col from "react-bootstrap/esm/Col";
-import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 const Login: React.FC = () => {
   return (
-    <Container>
+    <Col>
       <Row className="justify-content-center">
-        <Col xs={6} className="mt-5">
+        <Col xs={12} md={6} lg={4} className="mt-5">
           <LoginForm />
         </Col>
       </Row>
-    </Container>
+    </Col>
   );
 };
 

@@ -37,18 +37,25 @@ const Header: React.FC = () => {
   };
 
   return (
-    <Row className="header sticky-top">
-      <Col xs={6} md={4} lg={2}>
-        <Link to="/">
-          <Image src={logo} fluid />
-        </Link>
-      </Col>
-      <Col xs={6} md={8} lg={10} className="d-flex align-items-center px-5">
-        <Nav variant="pills" activeKey={location.pathname}>
-          <NavLinks />
-        </Nav>
-      </Col>
-    </Row>
+    <Col>
+      <Row className="header sticky-top">
+        <Col xs={6} md={4} lg={2}>
+          <Link to="/">
+            <Image src={logo} fluid />
+          </Link>
+        </Col>
+        <Col
+          xs={6}
+          md={8}
+          lg={10}
+          className="d-none d-md-flex align-items-center px-5"
+        >
+          <Nav variant="pills" activeKey={location.pathname}>
+            <NavLinks />
+          </Nav>
+        </Col>
+      </Row>
+    </Col>
   );
 };
 

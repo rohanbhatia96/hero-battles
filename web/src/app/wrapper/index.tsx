@@ -11,36 +11,43 @@ import { RootState } from "../store/types/reducers";
 import Header from "../containers/Header";
 import Footer from "../containers/Footer";
 import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
 
 const Wrapper: React.FC = () => {
   const isLoggedIn = useSelector(
     (state: RootState) => state.loginStateReducer.isLoggedIn
   );
   return (
-    <Container fluid className="min-vh-100 d-flex flex-column">
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route
-            path="/character/:id/:fetchFrom?"
-            exact
-            component={Character}
-          />
-          <Route path="/login" exact>
-            {isLoggedIn ? <Redirect to="/battle" /> : <Login />}
-          </Route>
-          <Route path="/register" exact>
-            {isLoggedIn ? <Redirect to="/battle" /> : <Register />}
-          </Route>
-          <Route path="/battle" exact>
-            {!isLoggedIn ? <Redirect to="/login" /> : <Battle />}
-          </Route>
-          <Route path="/" component={Error404} />
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </Container>
+    <BrowserRouter>
+      <Container fluid className="d-flex flex-column min-vh-100">
+        <Row>
+          <Header />
+        </Row>
+        <Row className="flex-grow-1">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route
+              path="/character/:id/:fetchFrom?"
+              exact
+              component={Character}
+            />
+            <Route path="/login" exact>
+              {isLoggedIn ? <Redirect to="/battle" /> : <Login />}
+            </Route>
+            <Route path="/register" exact>
+              {isLoggedIn ? <Redirect to="/battle" /> : <Register />}
+            </Route>
+            <Route path="/battle" exact>
+              {!isLoggedIn ? <Redirect to="/login" /> : <Battle />}
+            </Route>
+            <Route path="/" component={Error404} />
+          </Switch>
+        </Row>
+        <Row>
+          <Footer />
+        </Row>
+      </Container>
+    </BrowserRouter>
   );
 };
 

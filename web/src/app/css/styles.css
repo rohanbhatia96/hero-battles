@@ -97,3 +97,6 @@ select:-webkit-autofill:focus {
 .active .nav-link {
   color: #ffffff;
 }
+.test {
+  flex: 1 0 auto !important;
+}
