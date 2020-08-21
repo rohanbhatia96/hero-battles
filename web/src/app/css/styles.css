@@ -86,5 +86,14 @@ select:-webkit-autofill:focus {
 }
 
 .header {
-  background-color: #f2f2e2;
+  background-color: #f1f1f1;
+}
+.nav-link {
+  color: #111111;
+}
+.nav-link:hover {
+  color: #808080;
+}
+.active .nav-link {
+  color: #ffffff;
 }

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Home",
+    "route": "/",
+    "display": "public"
+  },
+  {
+    "id": 2,
+    "name": "Battle",
+    "route": "/battle",
+    "display": "public"
+  },
+  {
+    "id": 3,
+    "name": "Login",
+    "route": "/login",
+    "display": "loggedOut"
+  },
+  {
+    "id": 4,
+    "name": "My Collection",
+    "route": "/collection",
+    "display": "loggedIn"
+  },
+  {
+    "id": 5,
+    "name": "My Account",
+    "route": "/account",
+    "display": "loggedIn"
+  }
+]
