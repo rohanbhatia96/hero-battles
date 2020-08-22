@@ -38,7 +38,7 @@ const Header: React.FC = () => {
 
   return (
     <Col>
-      <Row className="header sticky-top">
+      <Row className="header">
         <Col xs={6} md={4} lg={2}>
           <Link to="/">
             <Image src={logo} fluid />

@@ -20,7 +20,7 @@ const Wrapper: React.FC = () => {
   return (
     <BrowserRouter>
       <Container fluid className="d-flex flex-column min-vh-100">
-        <Row>
+        <Row className="sticky-top">
           <Header />
         </Row>
         <Row className="flex-grow-1">
