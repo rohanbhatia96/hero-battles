@@ -97,6 +97,12 @@ select:-webkit-autofill:focus {
 .active .nav-link {
   color: #ffffff;
 }
-.test {
-  flex: 1 0 auto !important;
+.footer {
+  margin-top: 30px;
+  padding: 25px 0px 10px 0px;
+  background-color: #f1f1f1;
+  color: #111111;
+}
+.footer a {
+  color: #882411;
 }

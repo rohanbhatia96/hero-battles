@@ -1,13 +1,19 @@
 import React from "react";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 const Footer: React.FC = () => {
   return (
-    <Row>
-      <Col xs={12}>
-        <h1>Footer</h1>
-      </Col>
-    </Row>
+    <Col className="footer d-flex justify-content-center">
+      <p>
+        Developed With ❤️ By{" "}
+        <a
+          href="https://therohanbhatia.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Rohan Bhatia
+        </a>
+      </p>
+    </Col>
   );
 };
 
