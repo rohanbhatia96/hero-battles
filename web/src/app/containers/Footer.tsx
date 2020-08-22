@@ -4,7 +4,11 @@ const Footer: React.FC = () => {
   return (
     <Col className="footer d-flex justify-content-center">
       <p>
-        Developed With ❤️ By{" "}
+        Developed With{" "}
+        <span role="img" aria-label="red heart">
+          ❤️
+        </span>{" "}
+        By{" "}
         <a
           href="https://therohanbhatia.com"
           target="_blank"
