@@ -7,7 +7,7 @@ import { CharacterProps } from "../types/pages/character";
 const Character: React.FC = () => {
   const { id, fetchFrom } = useParams<CharacterProps>();
   return (
-    <Col className="d-flex flex-column">
+    <Col className="d-flex flex-column py-5 px-4">
       <CharacterDetails id={id} fetchFrom={fetchFrom} />
     </Col>
   );

@@ -9,8 +9,12 @@ import { CharacterProps } from "../types/pages/character";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
+import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
 
 const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
+  const defaultImageUrl =
+    "https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e_400x400.jpg";
   const { loading, error, data } = useQuery<Query>(
     fetchFrom === "external"
       ? GET_SINGLE_CHARACTER_FROM_API_ID
@@ -31,9 +35,86 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
         </Col>
       )}
       {data && (
-        <Col>
-          <p>data {JSON.stringify(data)}</p>
-        </Col>
+        <>
+          <Col xs={12} md={4} lg={3}>
+            <Row
+              style={{
+                position: "sticky",
+                top: 100,
+                zIndex: 100,
+              }}
+            >
+              <Col>
+                <Image
+                  src={data.getSingleCharacter.imageUrl || defaultImageUrl}
+                  fluid
+                />
+                <Button className="mt-3 d-none d-md-block" block>
+                  Add {data.getSingleCharacter.name} to my collection
+                </Button>
+              </Col>
+            </Row>
+          </Col>
+          <Col
+            xs={12}
+            className="d-block d-md-none"
+            style={{
+              margin: 0,
+              position: "sticky",
+              zIndex: 100,
+              top: 100,
+              padding: 20,
+              backgroundColor: "white",
+            }}
+          >
+            <Button block>
+              Add {data.getSingleCharacter.name} to my collection
+            </Button>
+          </Col>
+          <Col xs={12} md={4} lg={5}>
+            <h2>{data.getSingleCharacter.name}</h2>
+            <h3>Power Stats</h3>
+            <Row>
+              <Col xs={12}>81</Col>
+            </Row>
+            <Row>
+              <Col xs={6}>Power</Col>
+              <Col xs={6}>{data.getSingleCharacter.powerStats.power}</Col>
+            </Row>
+          </Col>
+          <Col xs={12} md={4} lg={4}>
+            <h3>Basic Info</h3>
+            <p>Real Name: {data.getSingleCharacter.realName}</p>
+            <p>Alignment: {data.getSingleCharacter.alignment}</p>
+            <p>Publisher: {data.getSingleCharacter.publisher}</p>
+            <h3>Appearance</h3>
+            <p>Height: {data.getSingleCharacter.appearance.height}</p>
+            <p>Weight: {data.getSingleCharacter.appearance.weight}</p>
+            <p>Gender: {data.getSingleCharacter.appearance.gender}</p>
+            <p>Race: {data.getSingleCharacter.appearance.race}</p>
+            <p>Eye Color: {data.getSingleCharacter.appearance.eyeColor}</p>
+            <p>Hair Color: {data.getSingleCharacter.appearance.hairColor}</p>
+            <h3>Work</h3>
+            <p>Occupation: {data.getSingleCharacter.work.occupation}</p>
+            <p>Base: {data.getSingleCharacter.work.base}</p>
+            <h3>Connections</h3>
+            <p>
+              Group Affiliations:{" "}
+              {data.getSingleCharacter.connections.groupAffiliations}
+            </p>
+            <p>Relatives: {data.getSingleCharacter.connections.relatives}</p>
+            <h3>Biography</h3>
+            <p>Alter Egos: {data.getSingleCharacter.biography.alterEgos}</p>
+            <p>Aliases: {data.getSingleCharacter.biography.aliases}</p>
+            <p>
+              Place of Birth: {data.getSingleCharacter.biography.placeOfBirth}
+            </p>
+            <p>
+              First Appearance:{" "}
+              {data.getSingleCharacter.biography.firstAppearance}
+            </p>
+          </Col>
+        </>
       )}
       {error && (
         <Col>

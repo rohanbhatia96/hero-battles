@@ -87,6 +87,7 @@ select:-webkit-autofill:focus {
 
 .header {
   background-color: #f1f1f1;
+  height: 100px;
 }
 .nav-link {
   color: #111111;
