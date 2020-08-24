@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
+import { findAverageRating } from "../utils/findAverageRating";
+import CharacterStats from "../components/CharacterStats";
 
 const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
   const defaultImageUrl =
@@ -40,7 +42,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
             <Row
               style={{
                 position: "sticky",
-                top: 100,
+                top: 120,
                 zIndex: 100,
               }}
             >
@@ -50,7 +52,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
                   fluid
                 />
                 <Button className="mt-3 d-none d-md-block" block>
-                  Add {data.getSingleCharacter.name} to my collection
+                  Add {data.getSingleCharacter.name} to your collection
                 </Button>
               </Col>
             </Row>
@@ -68,18 +70,26 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
             }}
           >
             <Button block>
-              Add {data.getSingleCharacter.name} to my collection
+              Add {data.getSingleCharacter.name} to your collection
             </Button>
           </Col>
           <Col xs={12} md={4} lg={5}>
-            <h2>{data.getSingleCharacter.name}</h2>
-            <h3>Power Stats</h3>
-            <Row>
-              <Col xs={12}>81</Col>
-            </Row>
-            <Row>
-              <Col xs={6}>Power</Col>
-              <Col xs={6}>{data.getSingleCharacter.powerStats.power}</Col>
+            <Row className="sticky-top" style={{ top: 125, zIndex: 90 }}>
+              <Col xs={12}>
+                <p>
+                  <span className="hero-name">
+                    {data.getSingleCharacter.name}{" "}
+                  </span>
+                  <span className="hero-rating">
+                    {findAverageRating(data.getSingleCharacter.powerStats)}
+                  </span>
+                </p>
+              </Col>
+              <Col xs={12} className="my-3">
+                <CharacterStats
+                  powerStats={data.getSingleCharacter.powerStats}
+                />
+              </Col>
             </Row>
           </Col>
           <Col xs={12} md={4} lg={4}>

@@ -107,3 +107,15 @@ select:-webkit-autofill:focus {
 .footer a {
   color: #882411;
 }
+.hero-name {
+  font-size: 32px;
+  font-weight: 600;
+}
+.hero-rating {
+  font-size: 32px;
+  background-color: #bcd4e6;
+  padding: 10px;
+  border-style: solid;
+  border-color: #cde5f7;
+  border-radius: 100%;
+}
