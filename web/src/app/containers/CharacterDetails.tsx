@@ -74,7 +74,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
             </Button>
           </Col>
           <Col xs={12} md={4} lg={5}>
-            <Row className="sticky-top" style={{ top: 125, zIndex: 90 }}>
+            <Row className="sticky-top py-3" style={{ top: 125, zIndex: 90 }}>
               <Col xs={12}>
                 <p>
                   <span className="hero-name">
