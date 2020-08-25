@@ -1,6 +1,5 @@
 import React from "react";
 import { PowerStats } from "../types/graphql";
-import { findAverageRating } from "../utils/findAverageRating";
 import Table from "react-bootstrap/Table";
 
 interface PowerProps {
