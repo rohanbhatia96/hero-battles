@@ -12,6 +12,7 @@ export default class GeneralResolver {
     try {
       const user: User | undefined = await User.findOne({
         where: { id: context.userId },
+        relations: ["characters"],
       });
       if (user) {
         return user;

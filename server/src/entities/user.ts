@@ -1,7 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BaseEntity,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 import { ObjectType, Field, Root } from "type-graphql";
 import { ApolloError } from "apollo-server-express";
 import { generateJwt } from "../utils/jwtHandler";
+import { Character } from "./character/character";
 
 @ObjectType()
 @Entity()
@@ -23,6 +31,11 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @Field((_type) => [Character])
+  @ManyToMany((_type) => Character)
+  @JoinTable()
+  characters: Character[];
 
   @Field()
   authToken(@Root() parent: User): string {
