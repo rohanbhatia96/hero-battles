@@ -20,13 +20,13 @@ export default class UpdateResolver {
     return "this is a required query but is never used";
   }
 
-  @Mutation(() => User)
+  @Mutation(() => Boolean)
   @UseMiddleware(isAuth)
   @ValidateArgs(addCharToUserSchema)
   async addCharacterToUser(
     @Arg("charId") charId: number,
     @Ctx() context: IContext
-  ): Promise<User> {
+  ): Promise<Boolean> {
     try {
       const user: User | undefined = await User.findOne({
         where: { id: context.userId },
@@ -39,7 +39,7 @@ export default class UpdateResolver {
         if (char) {
           user.characters = [...user.characters, char];
           await user.save();
-          return user;
+          return true;
         } else {
           throw "Character Id is invalid";
         }
