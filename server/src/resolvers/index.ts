@@ -4,7 +4,7 @@ import TrendingCharactersResolver from "./character/trendingResolver";
 import GeneralCharacterResolver from "./character/generalResolver";
 import SearchResolver from "./character/searchResolver";
 import GeneralUserResolver from "./user/generalResolver";
-import UpdateUserResolver from "./user/updateReolver";
+import UpdateUserResolver from "./user/updateResolver";
 
 export const resolvers = [
   RegisterResolver,
