@@ -19,7 +19,7 @@ const AddCharacterButton: React.FC<IProps> = ({
   ...rest
 }) => {
   const history = useHistory();
-  const isLoggedIn = useSelector<RootState, boolean | null>(
+  const isLoggedIn = useSelector<RootState, boolean>(
     (state: RootState) => state.loginStateReducer.isLoggedIn
   );
   const authToken = useSelector<RootState, string | null>(

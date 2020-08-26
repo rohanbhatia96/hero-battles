@@ -3,7 +3,7 @@ import { LoginState } from "../types/reducers";
 import { LoginActionTypes } from "../types/actions";
 
 const initialState: LoginState = {
-  isLoggedIn: null,
+  isLoggedIn: false,
   authToken: null,
 };
 

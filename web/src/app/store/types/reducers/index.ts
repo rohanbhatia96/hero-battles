@@ -2,6 +2,6 @@ import { combinedReducers } from "../../reducers";
 
 export type RootState = ReturnType<typeof combinedReducers>;
 export interface LoginState {
-  isLoggedIn: boolean | null;
+  isLoggedIn: boolean;
   authToken: string | null;
 }
