@@ -152,3 +152,17 @@ export const ADD_CHAR_TO_USER = gql`
     addCharacterToUser(charId: $charId)
   }
 `;
+
+export const GET_USER_DETAILS = gql`
+  query getAllUserDetails {
+    getAllUserDetails {
+      name
+      username
+      email
+      characters {
+        name
+        imageUrl
+      }
+    }
+  }
+`;
