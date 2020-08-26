@@ -10,9 +10,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Spinner from "react-bootstrap/Spinner";
 import Image from "react-bootstrap/Image";
-import Button from "react-bootstrap/Button";
 import { findAverageRating } from "../utils/findAverageRating";
 import CharacterStats from "../components/CharacterStats";
+import AddCharacterButton from "./AddCharacterButton";
 
 const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
   const defaultImageUrl =
@@ -51,9 +51,11 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
                   src={data.getSingleCharacter.imageUrl || defaultImageUrl}
                   fluid
                 />
-                <Button className="mt-3 d-none d-md-block" block>
-                  Add {data.getSingleCharacter.name} to your collection
-                </Button>
+                <AddCharacterButton
+                  className="mt-3 d-none d-md-block"
+                  characterName={data.getSingleCharacter.name}
+                  characterId={data.getSingleCharacter.id}
+                />
               </Col>
             </Row>
           </Col>
@@ -69,9 +71,10 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
               backgroundColor: "white",
             }}
           >
-            <Button block>
-              Add {data.getSingleCharacter.name} to your collection
-            </Button>
+            <AddCharacterButton
+              characterName={data.getSingleCharacter.name}
+              characterId={data.getSingleCharacter.id}
+            />
           </Col>
           <Col xs={12} md={4} lg={5}>
             <Row className="sticky-top py-3" style={{ top: 125, zIndex: 90 }}>

@@ -23,6 +23,7 @@ export const GET_TRENDING_CHARACTERS = gql`
 export const GET_SINGLE_CHARACTER = gql`
   query getSingleCharacter($id: Float!) {
     getSingleCharacter(id: $id) {
+      id
       name
       realName
       imageUrl
@@ -66,6 +67,7 @@ export const GET_SINGLE_CHARACTER = gql`
 export const GET_SINGLE_CHARACTER_FROM_API_ID = gql`
   query getSingleCharacterFromApiId($apiId: Float!) {
     getSingleCharacter(apiId: $apiId) {
+      id
       name
       realName
       imageUrl
@@ -142,5 +144,11 @@ export const LOGIN_USER = gql`
       authToken
       username
     }
+  }
+`;
+
+export const ADD_CHAR_TO_USER = gql`
+  mutation addCharToUser($charId: Float!) {
+    addCharacterToUser(charId: $charId)
   }
 `;

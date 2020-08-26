@@ -42,6 +42,7 @@ export type User = {
   name: Scalars['String'];
   username: Scalars['String'];
   email: Scalars['String'];
+  characters: Array<Character>;
   authToken: Scalars['String'];
 };
 
@@ -125,6 +126,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   register: User;
   updateTrendingCharacters: Array<Character>;
+  addCharacterToUser: Scalars['Boolean'];
 };
 
 
@@ -133,4 +135,9 @@ export type MutationRegisterArgs = {
   email: Scalars['String'];
   username: Scalars['String'];
   name: Scalars['String'];
+};
+
+
+export type MutationAddCharacterToUserArgs = {
+  charId: Scalars['Float'];
 };
