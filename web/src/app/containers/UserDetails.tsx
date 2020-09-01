@@ -38,7 +38,7 @@ const UserDetails: React.FC = () => {
             <p>Email: {data.getAllUserDetails.email}</p>
           </Col>
           <h3>{data.getAllUserDetails.name}'s heroes:</h3>
-          <Col>
+          <Col md={6}>
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
