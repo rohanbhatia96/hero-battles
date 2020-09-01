@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { GET_USER_DETAILS } from "../api/gqlQueries";
 import { RootState } from "../store/types/reducers";
 import { Character, Query } from "../types/graphql";
+import { Link } from "react-router-dom";
 
 const UserDetails: React.FC = () => {
   const authToken = useSelector<RootState, string | null>(
@@ -51,7 +52,11 @@ const UserDetails: React.FC = () => {
                   {data.getAllUserDetails.characters.map(
                     (character: Character) => (
                       <tr key={character.id}>
-                        <td>{character.name}</td>
+                        <td>
+                          <Link to={`/character/${character.id}`}>
+                            {character.name}
+                          </Link>
+                        </td>
                         <td>todo: make server return powerStats</td>
                       </tr>
                     )
