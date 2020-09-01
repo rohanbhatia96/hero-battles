@@ -1,14 +1,15 @@
-import React from "react";
-import { RootState } from "../store/types/reducers";
-import { useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
-import { Query } from "../types/graphql";
+import React from "react";
+import Col from "react-bootstrap/esm/Col";
+import Row from "react-bootstrap/esm/Row";
+import Spinner from "react-bootstrap/esm/Spinner";
+import Table from "react-bootstrap/esm/Table";
+import { useSelector } from "react-redux";
 import { GET_USER_DETAILS } from "../api/gqlQueries";
+import { RootState } from "../store/types/reducers";
+import { Character, Query } from "../types/graphql";
 
 const UserDetails: React.FC = () => {
-  const isLoggedIn = useSelector<RootState, boolean>(
-    (state: RootState) => state.loginStateReducer.isLoggedIn
-  );
   const authToken = useSelector<RootState, string | null>(
     (state: RootState) => state.loginStateReducer.authToken
   );
@@ -20,12 +21,53 @@ const UserDetails: React.FC = () => {
     },
   });
   return (
-    <>
-      <h3>user details</h3>
-      <p>loading: {JSON.stringify(loading)}</p>
-      <p>error: {JSON.stringify(error)}</p>
-      <p>data: {JSON.stringify(data?.getAllUserDetails)}</p>
-    </>
+    <Row className="flex-grow-1">
+      {loading && (
+        <Col className="d-flex justify-content-center align-items-center">
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Col>
+      )}
+      {data && (
+        <Col xs={12}>
+          <h3>{data.getAllUserDetails.name}'s account details:</h3>
+          <Col className="user-details-container">
+            <p>Name: {data.getAllUserDetails.name}</p>
+            <p>Username: {data.getAllUserDetails.username}</p>
+            <p>Email: {data.getAllUserDetails.email}</p>
+          </Col>
+          <h3>{data.getAllUserDetails.name}'s heroes:</h3>
+          <Col>
+            <Table striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th>Hero</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                <>
+                  {data.getAllUserDetails.characters.map(
+                    (character: Character) => (
+                      <tr key={character.id}>
+                        <td>{character.name}</td>
+                        <td>todo: make server return powerStats</td>
+                      </tr>
+                    )
+                  )}
+                </>
+              </tbody>
+            </Table>
+          </Col>
+        </Col>
+      )}
+      {error && (
+        <Col className="d-flex justify-content-center align-items-center">
+          <p>{JSON.stringify(error)}</p>
+        </Col>
+      )}
+    </Row>
   );
 };
 

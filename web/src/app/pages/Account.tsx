@@ -4,7 +4,7 @@ import UserDetails from "../containers/UserDetails";
 
 const Account: React.FC = () => {
   return (
-    <Col className="py-5 px-4">
+    <Col className="d-flex flex-column py-5 px-4">
       <UserDetails />
     </Col>
   );

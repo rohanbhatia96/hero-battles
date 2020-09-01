@@ -160,6 +160,7 @@ export const GET_USER_DETAILS = gql`
       username
       email
       characters {
+        id
         name
         imageUrl
       }

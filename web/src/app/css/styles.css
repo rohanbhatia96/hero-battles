@@ -1,3 +1,12 @@
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: 0.5rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+  font-weight: 800;
+  }
+
 .hero-container {
   background-image: url(../images/hero-image.jpg);
   background-color: black;
@@ -118,4 +127,8 @@ select:-webkit-autofill:focus {
   border-style: solid;
   border-color: #cde5f7;
   border-radius: 100%;
+}
+.user-details-container {
+  font-size: medium;
+  margin-top: 36px;
 }
