@@ -16,3 +16,8 @@ export const registerUserSchema: Joi.ObjectSchema = Joi.object().keys({
   email: Joi.string().trim().email({ minDomainSegments: 2 }).required(),
   password: Joi.string().trim().min(8).max(16).required(),
 });
+
+export const isCharacterAddedSchema: Joi.ObjectSchema = Joi.object({
+  id: Joi.number().integer().greater(0),
+  apiId: Joi.number().integer().greater(0),
+}).or("id", "apiId");

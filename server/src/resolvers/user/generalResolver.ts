@@ -3,6 +3,8 @@ import { Arg, Ctx, Query, Resolver, UseMiddleware } from "type-graphql";
 import { User } from "../../entities";
 import { isAuth } from "../../middlewares/isAuth";
 import { IContext } from "../../types/IContext";
+import { ValidateArgs } from "../../middlewares/ValidateArguments";
+import { isCharacterAddedSchema } from "../../schemas/userSchemas";
 
 @Resolver()
 export default class GeneralResolver {
@@ -32,17 +34,30 @@ export default class GeneralResolver {
 
   @Query(() => Boolean)
   @UseMiddleware(isAuth)
+  @ValidateArgs(isCharacterAddedSchema)
   async isCharacterAdded(
     @Ctx() context: IContext,
-    @Arg("characterId") characterId: Number
+    @Arg("id", { nullable: true }) id?: number,
+    @Arg("apiId", { nullable: true }) apiId?: number
   ): Promise<Boolean> {
     try {
+      let finalId: number;
+      let finalKey: "id" | "apiId";
+      if (id) {
+        finalId = id;
+        finalKey = "id";
+      } else if (apiId) {
+        finalId = apiId;
+        finalKey = "apiId";
+      } else {
+        throw "Id not found";
+      }
       const user: User | undefined = await User.findOne({
         where: { id: context.userId },
         relations: ["characters"],
       });
       if (user && user.characters) {
-        const char = user.characters.filter((c) => c.id === characterId);
+        const char = user.characters.filter((c) => c[finalKey] === finalId);
         if (char.length === 1) {
           return true;
         } else {
