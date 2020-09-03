@@ -12,7 +12,13 @@ export default class GeneralResolver {
     try {
       const user: User | undefined = await User.findOne({
         where: { id: context.userId },
-        relations: ["characters"],
+        join: {
+          alias: "user",
+          leftJoinAndSelect: {
+            characters: "user.characters",
+            powerStats: "characters.powerStats",
+          },
+        },
       });
       if (user) {
         return user;
