@@ -18,6 +18,7 @@ export type Query = {
   getSingleCharacter: Character;
   getCharactersFromSearch: Array<SearchCharacter>;
   getAllUserDetails: User;
+  isCharacterAdded: Scalars['Boolean'];
 };
 
 
@@ -35,6 +36,11 @@ export type QueryGetSingleCharacterArgs = {
 
 export type QueryGetCharactersFromSearchArgs = {
   searchTerm: Scalars['String'];
+};
+
+
+export type QueryIsCharacterAddedArgs = {
+  characterId: Scalars['Float'];
 };
 
 export type User = {

@@ -163,7 +163,21 @@ export const GET_USER_DETAILS = gql`
         id
         name
         imageUrl
+        powerStats {
+          power
+          combat
+          durability
+          intelligence
+          strength
+          speed
+        }
       }
     }
+  }
+`;
+
+export const IS_CHARACTER_ADDED = gql`
+  query isCharacterAdded($characterId: Float!) {
+    isCharacterAdded(characterId: $characterId)
   }
 `;

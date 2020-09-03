@@ -11,11 +11,13 @@ import { useHistory } from "react-router-dom";
 interface IProps extends ButtonProps {
   characterName: string;
   characterId: number;
+  disabled: boolean;
 }
 
 const AddCharacterButton: React.FC<IProps> = ({
   characterName,
   characterId,
+  disabled,
   ...rest
 }) => {
   const history = useHistory();
@@ -61,8 +63,15 @@ const AddCharacterButton: React.FC<IProps> = ({
 
   return (
     <>
-      <Button {...rest} block onClick={addButtonPressed} disabled={loading}>
-        Add {characterName} to your collection
+      <Button
+        {...rest}
+        block
+        onClick={addButtonPressed}
+        disabled={disabled || loading}
+      >
+        {disabled
+          ? `${characterName} is already in your collection`
+          : `Add ${characterName} to your collection`}
       </Button>
       <Modal
         show={showModal}

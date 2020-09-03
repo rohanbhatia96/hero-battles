@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import {
   GET_SINGLE_CHARACTER_FROM_API_ID,
   GET_SINGLE_CHARACTER,
+  IS_CHARACTER_ADDED,
 } from "../api/gqlQueries";
 import { Query } from "../types/graphql";
 import { CharacterProps } from "../types/pages/character";
@@ -13,10 +14,27 @@ import Image from "react-bootstrap/Image";
 import { findAverageRating } from "../utils/findAverageRating";
 import CharacterStats from "../components/CharacterStats";
 import AddCharacterButton from "./AddCharacterButton";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/types/reducers";
 
 const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
   const defaultImageUrl =
     "https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e_400x400.jpg";
+  const isLoggedIn = useSelector<RootState, boolean>(
+    (state: RootState) => state.loginStateReducer.isLoggedIn
+  );
+  const authToken = useSelector<RootState, string | null>(
+    (state: RootState) => state.loginStateReducer.authToken
+  );
+  const { data: data1 } = useQuery<Query>(IS_CHARACTER_ADDED, {
+    variables: { characterId: parseFloat(id) },
+    skip: !isLoggedIn || fetchFrom === "external",
+    context: {
+      headers: {
+        Authorization: authToken,
+      },
+    },
+  });
   const { loading, error, data } = useQuery<Query>(
     fetchFrom === "external"
       ? GET_SINGLE_CHARACTER_FROM_API_ID
@@ -27,6 +45,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
       },
     }
   );
+
   return (
     <Row className="flex-grow-1">
       {loading && (
@@ -55,6 +74,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
                   className="mt-3 d-none d-md-block"
                   characterName={data.getSingleCharacter.name}
                   characterId={data.getSingleCharacter.id}
+                  disabled={data1 ? data1.isCharacterAdded : false}
                 />
               </Col>
             </Row>
@@ -74,6 +94,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
             <AddCharacterButton
               characterName={data.getSingleCharacter.name}
               characterId={data.getSingleCharacter.id}
+              disabled={data1 ? data1.isCharacterAdded : false}
             />
           </Col>
           <Col xs={12} md={4} lg={5}>
