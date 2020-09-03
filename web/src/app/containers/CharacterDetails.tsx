@@ -4,6 +4,7 @@ import {
   GET_SINGLE_CHARACTER_FROM_API_ID,
   GET_SINGLE_CHARACTER,
   IS_CHARACTER_ADDED,
+  IS_CHARACTER_ADDED_FROM_API_ID,
 } from "../api/gqlQueries";
 import { Query } from "../types/graphql";
 import { CharacterProps } from "../types/pages/character";
@@ -26,15 +27,20 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
   const authToken = useSelector<RootState, string | null>(
     (state: RootState) => state.loginStateReducer.authToken
   );
-  const { data: data1 } = useQuery<Query>(IS_CHARACTER_ADDED, {
-    variables: { characterId: parseFloat(id) },
-    skip: !isLoggedIn || fetchFrom === "external",
-    context: {
-      headers: {
-        Authorization: authToken,
+  const { data: data1 } = useQuery<Query>(
+    fetchFrom === "external"
+      ? IS_CHARACTER_ADDED_FROM_API_ID
+      : IS_CHARACTER_ADDED,
+    {
+      variables: { id: parseFloat(id) },
+      skip: !isLoggedIn,
+      context: {
+        headers: {
+          Authorization: authToken,
+        },
       },
-    },
-  });
+    }
+  );
   const { loading, error, data } = useQuery<Query>(
     fetchFrom === "external"
       ? GET_SINGLE_CHARACTER_FROM_API_ID
@@ -147,6 +153,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
               First Appearance:{" "}
               {data.getSingleCharacter.biography.firstAppearance}
             </p>
+            <p>{JSON.stringify(data1)}</p>
           </Col>
         </>
       )}

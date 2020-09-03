@@ -40,7 +40,8 @@ export type QueryGetCharactersFromSearchArgs = {
 
 
 export type QueryIsCharacterAddedArgs = {
-  characterId: Scalars['Float'];
+  apiId?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
 };
 
 export type User = {

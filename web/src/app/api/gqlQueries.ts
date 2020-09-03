@@ -177,7 +177,13 @@ export const GET_USER_DETAILS = gql`
 `;
 
 export const IS_CHARACTER_ADDED = gql`
-  query isCharacterAdded($characterId: Float!) {
-    isCharacterAdded(characterId: $characterId)
+  query isCharacterAdded($id: Float!) {
+    isCharacterAdded(id: $id)
+  }
+`;
+
+export const IS_CHARACTER_ADDED_FROM_API_ID = gql`
+  query isCharacterAddedFromApiId($id: Float!) {
+    isCharacterAdded(apiId: $id)
   }
 `;
