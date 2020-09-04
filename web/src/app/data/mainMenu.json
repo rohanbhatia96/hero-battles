@@ -18,12 +18,6 @@
     "display": "loggedOut"
   },
   {
-    "id": 4,
-    "name": "My Collection",
-    "route": "/collection",
-    "display": "loggedIn"
-  },
-  {
     "id": 5,
     "name": "My Account",
     "route": "/account",
