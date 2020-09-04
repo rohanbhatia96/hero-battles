@@ -50,8 +50,8 @@ p {
   cursor: pointer;
 }
 .trending-char-title {
-  font-weight: 800;
-  font-size: 24px;
+  font-weight: 700;
+  font-size: 21px;
 }
 .trending-char-alignment {
   font-weight: 600;
@@ -59,7 +59,17 @@ p {
   color: #fff;
 }
 .trending-char-power {
-  font-size: 44px;
+  font-size: 38px;
+}
+@media only screen and (max-width: 576px) {
+  .trending-char-power {
+    font-size: 21px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .trending-char-power {
+    font-size: 28px;
+  }
 }
 .search-results {
   position: absolute;
