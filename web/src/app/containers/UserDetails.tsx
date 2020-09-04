@@ -4,12 +4,13 @@ import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import Spinner from "react-bootstrap/esm/Spinner";
 import Table from "react-bootstrap/esm/Table";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GET_USER_DETAILS } from "../api/gqlQueries";
 import { RootState } from "../store/types/reducers";
 import { Character, Query } from "../types/graphql";
 import { Link } from "react-router-dom";
 import { findAverageRating } from "../utils/findAverageRating";
+import Button from "react-bootstrap/esm/Button";
 
 const UserDetails: React.FC = () => {
   const authToken = useSelector<RootState, string | null>(
@@ -22,6 +23,11 @@ const UserDetails: React.FC = () => {
       },
     },
   });
+  const dispatch = useDispatch();
+  const logout = () => {
+    dispatch({ type: "SET_AUTH_TOKEN", payload: "" });
+    dispatch({ type: "SET_LOGIN_STATE", payload: false });
+  };
   return (
     <Row className="flex-grow-1">
       {loading && (
@@ -65,6 +71,9 @@ const UserDetails: React.FC = () => {
                 </>
               </tbody>
             </Table>
+          </Col>
+          <Col xs={12} className="py-5">
+            <Button size="lg" onClick={logout}>Logout</Button>
           </Col>
         </Col>
       )}

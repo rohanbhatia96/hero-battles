@@ -33,10 +33,10 @@ const Wrapper: React.FC = () => {
               component={Character}
             />
             <Route path="/login" exact>
-              {isLoggedIn ? <Redirect to="/battle" /> : <Login />}
+              {isLoggedIn ? <Redirect to="/account" /> : <Login />}
             </Route>
             <Route path="/register" exact>
-              {isLoggedIn ? <Redirect to="/battle" /> : <Register />}
+              {isLoggedIn ? <Redirect to="/account" /> : <Register />}
             </Route>
             <Route path="/account" exact>
               {!isLoggedIn ? <Redirect to="/login" /> : <Account />}
