@@ -145,3 +145,15 @@ select:-webkit-autofill:focus {
   font-size: medium;
   margin-top: 36px;
 }
+.mobile-menu-text {
+  color: #4d4dff;
+  text-decoration: underline;
+}
+.mobile-menu-modal {
+  width: 100% !important;
+  margin: 0 !important;
+}
+.modal-content {
+  height: 100vh;
+  margin: 0 !important;
+}
