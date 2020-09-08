@@ -9,7 +9,7 @@ module.exports = {
       "ssl": true
    },
    "synchronize": true,
-   "logging": true,
+   "logging": process.env.DB_ISLOGGING,
    "entities": [
       "src/entities/*.*"
    ],

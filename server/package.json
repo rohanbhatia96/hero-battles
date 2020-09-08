@@ -32,6 +32,7 @@
     "typeorm": "^0.2.25"
   },
   "scripts": {
-    "start": "ts-node-dev --respawn --no-notify src/index.ts"
+    "start": "ts-node-dev --respawn --no-notify src/index.ts",
+    "prod": "pm2 start src/index.ts"
   }
 }
