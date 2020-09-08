@@ -114,7 +114,12 @@ const LoginForm: React.FC = () => {
         <Link to="/register">Don't have an account? Register here.</Link>
       </Col>
       <Col xs={12}>
-        <Modal show={isModal}>
+        <Modal
+          show={isModal}
+          onHide={() => {
+            setIsModal(false);
+          }}
+        >
           <Modal.Header closeButton>
             <Modal.Title>Snap! There's an error</Modal.Title>
           </Modal.Header>

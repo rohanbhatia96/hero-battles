@@ -163,7 +163,7 @@ select:-webkit-autofill:focus {
   width: 100% !important;
   margin: 0 !important;
 }
-.modal-content {
+.mobile-menu-modal .modal-content {
   height: 100vh;
   margin: 0 !important;
 }
