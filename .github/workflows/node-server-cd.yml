@@ -1,0 +1,22 @@
+name: Node Server CD
+
+on:
+  push:
+    branches: [ master ]
+    paths: 'server/'
+    paths-ignore: 'web/'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code from remote
+        uses: actions/checkout@v2
+        
+      - name: Install nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.18.2'
+
+      - name: Compile typescript code
+        run: ls -a
