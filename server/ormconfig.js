@@ -10,10 +10,7 @@ module.exports = {
   },
   synchronize: true,
   logging: JSON.parse(process.env.DB_ISLOGGING),
-  entities:
-    process.env.ENV === "PRODUCTION"
-      ? ["dist/entities/*.*"]
-      : ["src/entities/*.*"],
+  entities: ["src/entities/*.*"],
   migrations: ["src/migration/**/*.ts"],
   subscribers: ["src/subscriber/**/*.ts"],
   cli: {
