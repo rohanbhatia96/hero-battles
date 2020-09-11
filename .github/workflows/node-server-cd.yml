@@ -1,0 +1,37 @@
+name: Node Server CD
+
+on:
+  push:
+    branches: [master]
+    paths: "server/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code from remote
+        uses: actions/checkout@v2
+
+      - name: Install nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.18.2"
+
+      - name: Compile typescript and build dist folder
+        run: |
+          npm i -g yarn
+          yarn --version
+          cd server
+          yarn install
+          ls -a
+          npx tsc
+          cp package.json ormconfig.js yarn.lock dist
+
+      - name: Copy dist folder content recursively to remote
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: server/dist
+          remote: apps/hero-server
+          host: ${{ secrets.DO_IP_ADD }}
+          username: ${{ secrets.DO_USER }}
+          privateKey: ${{ secrets.DO_NODE_KEY }}
