@@ -2,8 +2,8 @@ name: Node Server CD
 
 on:
   push:
-    branches: [ master ]
-    paths: 'server/'
+    branches: [master]
+    paths: "server/"
 
 jobs:
   build:
@@ -11,11 +11,27 @@ jobs:
     steps:
       - name: Checkout code from remote
         uses: actions/checkout@v2
-        
+
       - name: Install nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: '12.18.2'
+          node-version: "12.18.2"
+        run: npm i -g yarn
 
-      - name: Compile typescript code
-        run: ls -a
+      - name: cd into server folder
+        run: cd server
+
+      - name: Compile typescript
+        run: yarn --version && yarn install --prod && ls -a && npx tsc
+
+      - name: Copy external files to dist folder
+        run: cp package.json ormconfig.js
+
+      - name: Copy dist folder content recursively to remote
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: server/dist
+          remote: scp/home/rohan/directory
+          host: ${{ secrets.DO_IP_ADD }}
+          username: ${{ secrets.DO_USER }}
+          privateKey: ${{ secrets.DO_NODE_KEY }}
