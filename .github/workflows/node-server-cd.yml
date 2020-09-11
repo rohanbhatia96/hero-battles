@@ -20,10 +20,8 @@ jobs:
       - name: Compile typescript and build dist folder
         run: |
           npm i -g yarn
-          yarn --version
           cd server
           yarn install
-          ls -a
           npx tsc
           cp package.json ormconfig.js yarn.lock dist
 
