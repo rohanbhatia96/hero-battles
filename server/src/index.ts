@@ -32,5 +32,3 @@ const main = async () => {
 };
 
 main();
-
-//test comment
