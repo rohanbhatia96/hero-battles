@@ -7,7 +7,10 @@ import { store, persistor } from "./store";
 import Wrapper from "./wrapper";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri:
+    process.env.NODE_ENV === "production"
+      ? process.env.REACT_APP_SERVER_URL_PROD
+      : process.env.REACT_APP_SERVER_URL_DEV,
   cache: new InMemoryCache(),
 });
 
