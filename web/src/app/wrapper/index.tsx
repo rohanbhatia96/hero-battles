@@ -41,9 +41,7 @@ const Wrapper: React.FC = () => {
             <Route path="/account" exact>
               {!isLoggedIn ? <Redirect to="/login" /> : <Account />}
             </Route>
-            <Route path="/battle" exact>
-              {!isLoggedIn ? <Redirect to="/login" /> : <Battle />}
-            </Route>
+            <Route path="/battle" exact component={Battle} />
             <Route path="/" component={Error404} />
           </Switch>
         </Row>
