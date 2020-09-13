@@ -1,7 +1,5 @@
 # Hero Battles
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5f589d85-d43b-493d-b210-ef9ca4523548/deploy-status)](https://heroes.therohanbhatia.com)
-
 I love super heroes. I felt a project like this could brighten up my github portfolio 😉
 
 This is a fullstack app built with Node, Express, GraphQL, PostgreSQL and React and Redux. It also features separate CI/CD pipelines for the back end and front end.
