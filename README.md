@@ -1,6 +1,6 @@
 # Hero Battles
 
-![Node Server Workflow](https://github.com/rohanbhatia96/hero-battles/workflows/Node%20Server%20CD/badge.svg)
+![Node Server Workflow](https://github.com/rohanbhatia96/hero-battles/workflows/GraphQL%20Server/badge.svg)
 
 I love super heroes. I felt a project like this could brighten up my github portfolio 😉
 
@@ -56,7 +56,6 @@ Package manager: **Yarn**
 
 1. **Responsive Application**: The app looks good on all devices. Made possible with the help of bootstrap.
 1. **Signup/Login**: Authentication done with json web tokens.
-1. **Trending Heroes**: Trending heroes are shown on the homepage.
 1. **Search**: Search for any superhero using the search bar on the homepage.
 1. **View Details Of a Hero**: View the complete details of a hero.
 1. **Add Hero To Your Collection**: If you like a hero, you can add it to your collection.

@@ -1,4 +1,4 @@
-name: Node Server CD
+name: GraphQL Server
 
 on:
   push:
