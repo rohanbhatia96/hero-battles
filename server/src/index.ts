@@ -25,9 +25,7 @@ const main = async () => {
   apolloServer.applyMiddleware({ app });
 
   app.listen(process.env.PORT, () => {
-    console.log(
-      `GraphQL server started on http://localhost:${process.env.PORT}/graphql`
-    );
+    console.log(`GraphQL server started on Port:${process.env.PORT}`);
   });
 };
 
