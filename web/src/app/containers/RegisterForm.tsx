@@ -1,9 +1,10 @@
 import { ApolloError, useMutation } from "@apollo/client";
 import { Formik, FormikHelpers } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { REGISTER_USER } from "../api/gqlQueries";
 import userRegisterSchema from "../schemas/userRegisterSchema";
@@ -17,6 +18,11 @@ interface FormValues {
   confirmPassword: string;
 }
 const RegisterForm: React.FC = () => {
+  const [isModal, setIsModal] = useState<boolean>(false);
+  const handleModalClose = () => {
+    setIsModal(false);
+  };
+  const [errorMsg, setErrorMsg] = useState<string>("");
   const dispatch = useDispatch();
   const onCompleted = (receivedData: Mutation) => {
     dispatch({
@@ -26,6 +32,8 @@ const RegisterForm: React.FC = () => {
     dispatch({ type: "SET_LOGIN_STATE", payload: true });
   };
   const onError = (receivedError: ApolloError) => {
+    setErrorMsg(JSON.stringify(receivedError.message));
+    setIsModal(true);
     //TODO: log error to the server
   };
   const initialFormValues: FormValues = {
@@ -147,6 +155,24 @@ const RegisterForm: React.FC = () => {
             )}
           </Formik>
         </Col>
+      </Col>
+      <Col xs={12}>
+        <Modal
+          show={isModal}
+          onHide={() => {
+            setIsModal(false);
+          }}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Snap! There's an error</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{errorMsg}</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleModalClose}>
+              Try Again
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Col>
     </Col>
   );
