@@ -27,7 +27,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
   const authToken = useSelector<RootState, string | null>(
     (state: RootState) => state.loginStateReducer.authToken
   );
-  const { data: data1 } = useQuery<Query>(
+  const { data: data1, refetch } = useQuery<Query>(
     fetchFrom === "external"
       ? IS_CHARACTER_ADDED_FROM_API_ID
       : IS_CHARACTER_ADDED,
@@ -81,6 +81,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
                   characterName={data.getSingleCharacter.name}
                   characterId={data.getSingleCharacter.id}
                   disabled={data1 ? data1.isCharacterAdded : false}
+                  refetch={refetch}
                 />
               </Col>
             </Row>
@@ -101,6 +102,7 @@ const CharacterDetails: React.FC<CharacterProps> = ({ id, fetchFrom }) => {
               characterName={data.getSingleCharacter.name}
               characterId={data.getSingleCharacter.id}
               disabled={data1 ? data1.isCharacterAdded : false}
+              refetch={refetch}
             />
           </Col>
           <Col xs={12} md={4} lg={5}>

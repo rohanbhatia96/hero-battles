@@ -1,23 +1,25 @@
+import { ApolloError, useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import Button, { ButtonProps } from "react-bootstrap/Button";
-import { useMutation, ApolloError } from "@apollo/client";
-import { Mutation, MutationAddCharacterToUserArgs } from "../types/graphql";
-import { ADD_CHAR_TO_USER } from "../api/gqlQueries";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/types/reducers";
 import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { ADD_CHAR_TO_USER } from "../api/gqlQueries";
+import { RootState } from "../store/types/reducers";
+import { Mutation, MutationAddCharacterToUserArgs } from "../types/graphql";
 
 interface IProps extends ButtonProps {
   characterName: string;
   characterId: number;
   disabled: boolean;
+  refetch: any;
 }
 
 const AddCharacterButton: React.FC<IProps> = ({
   characterName,
   characterId,
   disabled,
+  refetch,
   ...rest
 }) => {
   const history = useHistory();
@@ -29,12 +31,14 @@ const AddCharacterButton: React.FC<IProps> = ({
   );
   const [showModal, setShowModal] = useState<boolean>(false);
   const onCompleted = (receivedData: Mutation) => {
-    console.log(JSON.stringify(receivedData));
+    //console.log(JSON.stringify(receivedData));
+    refetch();
   };
   const onError = (receivedError: ApolloError) => {
     console.log(JSON.stringify(receivedError));
     //TODO: log error to the server
   };
+
   const [addCharacterToUser, { loading }] = useMutation<
     Mutation,
     MutationAddCharacterToUserArgs
