@@ -5,3 +5,6 @@ export interface LoginState {
   isLoggedIn: boolean;
   authToken: string | null;
 }
+export interface ShouldRefetchUserState {
+  shouldRefetchUser: boolean;
+}

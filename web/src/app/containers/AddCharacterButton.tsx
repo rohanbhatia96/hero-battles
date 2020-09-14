@@ -2,7 +2,7 @@ import { ApolloError, useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import Button, { ButtonProps } from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ADD_CHAR_TO_USER } from "../api/gqlQueries";
 import { RootState } from "../store/types/reducers";
@@ -23,6 +23,7 @@ const AddCharacterButton: React.FC<IProps> = ({
   ...rest
 }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector<RootState, boolean>(
     (state: RootState) => state.loginStateReducer.isLoggedIn
   );
@@ -33,6 +34,7 @@ const AddCharacterButton: React.FC<IProps> = ({
   const onCompleted = (receivedData: Mutation) => {
     //console.log(JSON.stringify(receivedData));
     refetch();
+    dispatch({ type: "SET_REFETCH_USER", payload: true });
   };
   const onError = (receivedError: ApolloError) => {
     console.log(JSON.stringify(receivedError));

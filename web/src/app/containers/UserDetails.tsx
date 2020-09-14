@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
+import React, { useEffect } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import Spinner from "react-bootstrap/esm/Spinner";
@@ -16,7 +16,10 @@ const UserDetails: React.FC = () => {
   const authToken = useSelector<RootState, string | null>(
     (state: RootState) => state.loginStateReducer.authToken
   );
-  const { error, loading, data } = useQuery<Query>(GET_USER_DETAILS, {
+  const shouldRefetchUser = useSelector<RootState, boolean>(
+    (state: RootState) => state.shouldRefetchUserReducer.shouldRefetchUser
+  );
+  const { error, loading, data, refetch } = useQuery<Query>(GET_USER_DETAILS, {
     context: {
       headers: {
         Authorization: authToken,
@@ -28,6 +31,12 @@ const UserDetails: React.FC = () => {
     dispatch({ type: "SET_AUTH_TOKEN", payload: "" });
     dispatch({ type: "SET_LOGIN_STATE", payload: false });
   };
+  useEffect(() => {
+    if (shouldRefetchUser && !loading) {
+      refetch();
+      dispatch({ type: "SET_REFETCH_USER", payload: false });
+    }
+  }, []);
   return (
     <Row className="flex-grow-1">
       {loading && (
@@ -73,7 +82,9 @@ const UserDetails: React.FC = () => {
             </Table>
           </Col>
           <Col xs={12} className="py-5">
-            <Button size="lg" onClick={logout}>Logout</Button>
+            <Button size="lg" onClick={logout}>
+              Logout
+            </Button>
           </Col>
         </Col>
       )}
