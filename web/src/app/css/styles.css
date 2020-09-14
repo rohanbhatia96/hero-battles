@@ -167,3 +167,14 @@ select:-webkit-autofill:focus {
   height: 100vh;
   margin: 0 !important;
 }
+.advertisement {
+  background-color: #ace5ee;
+  min-height: 200px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .advertisement {
+    margin-top: 20px;
+  }
+}

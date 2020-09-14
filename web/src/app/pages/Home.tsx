@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useHistory } from "react-router-dom";
+import Advertisement from "../containers/Advertisement";
 import Searchbar from "../containers/Searchbar";
 import TrendingCharacters from "../containers/TrendingCharacters";
 
@@ -28,7 +29,7 @@ const Home: React.FC<{}> = () => {
           <TrendingCharacters />
         </Col>
         <Col xs={12} md={4}>
-          Advertisement
+          <Advertisement />
         </Col>
       </Row>
     </Col>
