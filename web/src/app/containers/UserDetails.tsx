@@ -36,7 +36,7 @@ const UserDetails: React.FC = () => {
       refetch();
       dispatch({ type: "SET_REFETCH_USER", payload: false });
     }
-  }, []);
+  }, [loading, shouldRefetchUser, refetch, dispatch]);
   return (
     <Row className="flex-grow-1">
       {loading && (
