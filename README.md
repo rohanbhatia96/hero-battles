@@ -1,7 +1,5 @@
 # Hero Battles
 
-![Node Server Workflow](https://github.com/rohanbhatia96/hero-battles/workflows/GraphQL%20Server/badge.svg)
-
 I love super heroes. I felt a project like this could brighten up my github portfolio 😉
 
 This is a **fullstack** app built with **Node**, **Express**, **GraphQL**, **PostgreSQL**, **React** and **Redux**. It also features separate **CI/CD** pipelines for the back end and front end.
