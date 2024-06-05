@@ -10,6 +10,8 @@ I used the [Superhero API](https://superheroapi.com/) to fetch details about sup
 
 ## Link
 
+
+:warning: **The api I used has been discontinued hence the project can't fetch any data now**
 Working project link: [Superhero Battles](https://heroes.therohanbhatia.com)
 
 ## Where's Everything Hosted?
